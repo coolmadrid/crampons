@@ -1,4 +1,4 @@
-(function(){
+(function(){function run(){var D=window.D;
 var G=document.getElementById('g'),S={},X={},DS=D.d||0,N0=D.n?parseFloat(String(D.n).replace(',','.')):null,
 H=function(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e},
 E=function(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')},
@@ -72,4 +72,5 @@ k.forEach(function(n){var s=S[n];m.push('> '+s.o[0]);if(s.r)m.push(s.r.s);if(s.r
 var nt=note();if(nt!=null&&nt!=N0)m.push('Note provisoire : '+F1(N0)+' → '+F1(nt)+' (hors but, passe, résultat)');
 for(var x in X)if(X[x].checked)m.push(x+' : oui');if(R.value.trim())m.push('Réplique : « '+R.value.trim()+' »');
 if(A.value.trim())m.push('Action libre : '+A.value.trim()+' · d20 brut ('+d20()+')');if(Z.value.trim())m.push('(( '+Z.value.trim()+' ))');B.disabled=1;B.textContent='Envoyé';sendPrompt(m.join('\n'))};
-var C=H('details','cm','<summary>Commandes</summary>');['!fiche','!relations','!sauvegarde'].concat(D.c||[]).forEach(function(c){var b=H('button','',c);b.onclick=function(){sendPrompt(c)};C.appendChild(b)});G.appendChild(C);hdr()})()
+var C=H('details','cm','<summary>Commandes</summary>');['!fiche','!relations','!sauvegarde'].concat(D.c||[]).forEach(function(c){var b=H('button','',c);b.onclick=function(){sendPrompt(c)};C.appendChild(b)});G.appendChild(C);hdr()}
+var k=0;(function t(){var g=document.getElementById("g");if(window.__cr)return;if(window.D&&g){window.__cr=1;try{run()}catch(e){g.textContent="Erreur widget : "+e.message}}else if(k++<200)setTimeout(t,50);else if(g)g.textContent="Widget : données D introuvables."})()})()
