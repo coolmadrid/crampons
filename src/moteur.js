@@ -16,6 +16,39 @@ function duel(v){var m=v!=null&&typeof v!='number'&&/([+-]\d+)\s*$/.exec(v);retu
 function roll(l,b,v,a){var x=d20(),y=a?d20():0,d=a>0?Math.max(x,y):a<0?Math.min(x,y):x,t=d+tot(b),du=duel(v),dd=typeof v=='number'?v:null,vs='';
 if(du){var z=d20(),dt=z+du[1];dd=dt+1;vs=' contre '+du[0]+' : d20 ('+z+') +'+du[1]+' = '+dt}else if(v!=null&&dd==null)vs=' contre '+v+' (jet MJ)';else if(dd!=null)vs=' contre DD '+dd;
 var r=cat(d,t,dd);return{d:d,c:r[1],ok:r[1]=='c'||r[1]=='b'||r[1]=='r',s:'[Jet] '+l+' : d20 ('+(a?x+', '+y+(a>0?' avantage':' désavantage')+' : '+d:d)+') +'+tot(b)+' = '+t+vs+' : '+r[0]}}
+var LBL={c:"Coup d'éclat",b:'Brillante',r:'Réussite',j:'Échec de justesse',e:'Échec',f:'Fiasco'};
+function rbox(l,b,dd,z,cb,txt){var st={r:null},btn=H('button','lb',txt||('🎲 Lancer '+btxt(b)));z.appendChild(btn);
+function fin(r,an){var box=H('div','rl '+r.c),fill=function(){box.innerHTML='<span class="dz">'+r.d+'</span><span class="rx"><b class="rc">'+(r.ch||LBL[r.c]||'')+'</b>'+E(r.s).replace(/\n/g,'<br>')+'</span>'};fill();an.replaceWith(box);st.r=r;
+if(r.c=='j'){var w=H('div','ch3'),op=[['Échec simple',0],['Réussite avec un prix',1]];if(DS>0)op.push(['Point de Destin : réussite sans prix',2]);
+op.forEach(function(q){var bt=H('button','',q[0]);bt.onclick=function(){if(q[1]==2)DS--;r.ch=q[0];r.ok=q[1]>0;r.s+=' → '+q[0]+(q[1]==2?' (reste '+DS+')':'');fill();w.remove();cb&&cb(r);hdr()};w.appendChild(bt)});box.after(w)}
+else if(r.c=='e'&&DS>0){var rr=H('button','ch3b','Relancer avec un Point de Destin');rr.onclick=function(){DS--;rr.remove();var r2=roll(l,b,dd,0);r2.s=r.s+'\n'+r2.s.replace('[Jet]','[Relance Destin, reste '+DS+']');fin(r2,box)};box.after(rr);cb&&cb(r)}
+else cb&&cb(r);hdr()}
+btn.onclick=function(){if(btn.dataset.go)return;btn.dataset.go=1;var k=0,t=setInterval(function(){btn.classList.add('rol');btn.textContent='🎲 '+d20();if(++k>7){clearInterval(t);fin(roll(l,b,dd,0),btn)}},45)};
+st.auto=function(){if(!st.r&&!btn.dataset.go){btn.dataset.go=1;fin(roll(l,b,dd,0),btn)}};st.pend=function(){return st.r&&st.r.c=='j'&&!st.r.ch};return st}
+function wk(W){var el=H('div','wk'),SL=[],cap=W.c||2,ex=0,TR=null,TA=null,MT=null,X3=null,err=H('div','er');
+function max(){return cap+ex}
+var hd=H('div','wkt','<span>Créneaux</span><small></small>'),row=H('div','wks');el.appendChild(hd);el.appendChild(row);
+function draw(){row.innerHTML='';for(var i=0;i<max();i++)(function(i){var s=SL[i],p=H('div','wkp'+(s?' on':''));
+p.innerHTML=s?'<span class="wn">'+(i+1)+'</span><span class="wv"><small>'+E(s[0])+'</small>'+E(s[1])+'</span>':'<span class="wn">'+(i+1)+'</span><span class="wv em">Créneau libre</span>';
+if(s){var x=H('button','wx','×');x.setAttribute('aria-label','Retirer');x.onclick=function(){SL.splice(i,1);draw()};p.appendChild(x)}row.appendChild(p)})(i);
+hd.querySelector('small').textContent=SL.length+' / '+max();err.textContent=''}
+function add(c,v){if(SL.length>=max()){err.textContent='Tous les créneaux sont pris. Retire-en un d\'abord.';return}SL.push([c,v]);draw()}
+if(W.x){var z3=H('div','wk3');el.appendChild(z3);X3=rbox('3e créneau ('+(W.x[2]||'PHY')+')',W.x[0],W.x[1],z3,function(r){if(r.ok&&!ex){ex=1;draw()}},'🎲 Tenter un 3e créneau · '+(W.x[2]||'PHY')+' '+btxt(W.x[0])+' · DD '+W.x[1])}
+el.appendChild(err);
+var GR=H('div','wkg');el.appendChild(GR);
+(W.g||[]).forEach(function(g){var c=H('div','wgc'),b=H('button','wgb','<span class="wi">'+(g[1]||'•')+'</span><span class="wgl"><b>'+E(g[0])+'</b>'+(g[3]?'<small>'+E(g[3])+'</small>':'')+'</span><span class="wch">+</span>'),pn=H('div','wpn');pn.hidden=1;
+(g[2]||[]).forEach(function(s){var ch=H('button','wsc',E(s));ch.onclick=function(){add(g[0],s)};pn.appendChild(ch)});
+var fr=H('div','wfr'),inp=H('input'),ok=H('button','wok','Ajouter');inp.placeholder='Autre chose (précise)';fr.appendChild(inp);fr.appendChild(ok);pn.appendChild(fr);
+ok.onclick=function(){var v=inp.value.trim();if(!v){err.textContent='Écris quelque chose avant d\'ajouter.';return}add(g[0],v);inp.value=''};inp.oninput=function(){err.textContent=''};
+b.onclick=function(){pn.hidden=!pn.hidden;c.classList.toggle('op',!pn.hidden)};c.appendChild(b);c.appendChild(pn);GR.appendChild(c)});
+if(W.t){var tb=W.tb!=null?W.tb:4,td=W.td!=null?W.td:12,th=H('div','wkt','<span>Entraînement</span><small>d20 + MEN '+tb+' · DD '+td+'</small>'),tg=H('div','wtg'),tz=H('div','wtz');el.appendChild(th);el.appendChild(tg);el.appendChild(tz);
+W.t.forEach(function(a){var n=a[1]||0,q=a[2]||4,b=H('button','wta','<b>'+E(a[0])+'</b><span class="tk">'+Array.from({length:q},function(_,i){return '<i'+(i<n?' class="f"':'')+'></i>'}).join('')+'</span><small>'+n+'/'+q+'</small>');
+b.onclick=function(){if(TR&&TR.r)return;[].forEach.call(tg.children,function(e){e.classList.remove('on')});b.classList.add('on');TA=a[0];tz.innerHTML='';TR=rbox('Entraînement '+a[0],tb,td,tz,function(){[].forEach.call(tg.children,function(e){if(!e.classList.contains('on'))e.classList.add('lk')})})};tg.appendChild(b)})}
+if(W.m){var mh=H('div','wkt','<span>Match</span><small>'+E(W.m)+'</small>'),mg=H('div','wmg');el.appendChild(mh);el.appendChild(mg);
+[['Jouer en détail','jouer en détail'],['Simuler','simuler']].forEach(function(o){var b=H('button','wmb',o[0]);b.onclick=function(){[].forEach.call(mg.children,function(e){e.classList.remove('on')});if(MT==o[1]){MT=null}else{MT=o[1];b.classList.add('on')}};mg.appendChild(b)})}
+draw();
+return{el:el,any:function(){return SL.length||TA||MT||(X3&&X3.r)},auto:function(){if(TR)TR.auto()},pend:function(){return (TR&&TR.pend())||(X3&&X3.pend())},
+msg:function(){var m=[];if(X3&&X3.r)m.push(X3.r.s);SL.forEach(function(s,i){m.push('> Créneau '+(i+1)+' : '+s[0]+' · '+s[1])});if(TA){m.push('> Entraînement : '+TA);if(TR&&TR.r)m.push(TR.r.s)}if(MT)m.push('Match : '+MT);return m}}}
 function bub(n,t){var A=n=='Aden',p=D.P&&D.P[n],w=H('div','bw'+(A?' me':'')),b=H('div','bu');
 b.innerHTML='<span class="av" style="border-color:'+(A?'#E24B4A':p?(PAL[p[2]]||'#185FA5'):'#185FA5')+'">'+(A?'🦊':p?p[0]:E(n[0]))+'</span><div><b class="'+(p?'nm':'')+'">'+E(n)+'</b><span class="tx">'+E(t)+'</span></div>';w.appendChild(b);
 if(p){var f=H('div','fi');f.innerHTML=p[0]+' <b>'+E(n)+'</b> · '+E(p[1])+'<br><span class="bd" style="background:'+(PAL[p[2]]||'#444441')+'">'+E(p[2])+(p[3]!=null?' '+p[3]:'')+'</span> '+E(p[4]||'')+(p[5]?' · '+E(p[5]):'');f.hidden=1;w.appendChild(f);b.querySelector('.nm').onclick=function(){f.hidden=!f.hidden}}return w}
@@ -45,7 +78,7 @@ if(k=='+'){var dn=/[\u2212-]\s*\d/.test(i[1])&&!/\+\s*\d/.test(i[1]);G.appendChi
 else if(k=='=')G.appendChild(H('div','rl '+(i[2]||''),E(i[1])));else if(k=='T')G.appendChild(terr(i[1],i[2],i[3]));
 else if(k=='K'){var c=H('div','kd','<b>'+E(i[1])+'</b><div class="tl">'+i[2].map(function(t){return '<div><small>'+E(t[0])+'</small><br>'+E(t[1])+'</div>'}).join('')+'</div>');if(i[3])c.style.borderColor=i[3];G.appendChild(c)}
 else if(k=='J')G.appendChild(H('div','',bar(i[1],i[2],i[3])));else if(k=='C')G.appendChild(card(i));else G.appendChild(bub(k,i[1]))});
-if(D.q)G.appendChild(H('div','q',E(D.q)));
+if(D.q)G.appendChild(H('div','q',E(D.q)));var WK=D.w?wk(D.w):null;if(WK)G.appendChild(WK.el);
 var O=H('div','op'),SEL=H('div','se');G.appendChild(O);
 (D.o||[]).forEach(function(o,n){var dv=duel(o[3]),CH=function(t,c){return '<span class="cp2'+(c?' '+c:'')+'">'+t+'</span>'},b=H('button','ob','<span class="nb">'+(n+1)+'</span><span class="ot"><b>'+E(o[0])+'</b>'+(o[1]?'<small>'+E(o[1])+'</small>':'')+(o[2]!=null?'<span class="chs">'+CH('🎲 '+btxt(o[2]))+(o[3]!=null?(typeof o[3]=='number'?CH('DD '+o[3],'dd'):CH('vs '+E(o[3]),'vs')):'')+(o[4]>0?CH('avantage','av2'):o[4]<0?CH('désavantage','ds'):'')+(o[5]?CH('puis '+E(o[5])+' '+btxt(o[6])+(o[7]!=null?(typeof o[7]=='number'?' · DD '+o[7]:' vs '+E(o[7])):''),'tw'):'')+'</span>':'')+'</span>'),z=H('div','rz');
 b.onclick=function(){if(!D.m)for(var k in S)if(k!=n){if(S[k].sp)DS+=S[k].sp;delete S[k];O.children[k*2].classList.remove('on');O.children[k*2+1].innerHTML=''}
@@ -66,9 +99,9 @@ G.appendChild(SEL);function up(){var k=Object.keys(S);SEL.innerHTML=D.m&&k.lengt
 var R=H('textarea');R.placeholder='Ta réplique (facultatif)';R.value=D.r||'';var A=H('textarea');A.placeholder='Action libre (un d20 brut est joint)';
 var Z=H('input');Z.placeholder='(( hors jeu ))';[R,A,Z].forEach(function(e){G.appendChild(e);e.oninput=function(){ER.textContent=''}});
 var ER=H('div','er'),B=H('button','sb','Envoyer au MJ ↗');G.appendChild(ER);G.appendChild(B);
-B.onclick=function(){var k=Object.keys(S),m=[];if(!k.length&&!R.value.trim()&&!A.value.trim()&&!Z.value.trim()){ER.textContent='Choisis une option ou écris quelque chose.';return}
-k.forEach(auto);if(k.some(function(n){var s=S[n];return (s.r&&s.r.c=='j'&&!s.r.ch)||(s.r2&&s.r2.c=='j'&&!s.r2.ch)})){ER.textContent='Échec de justesse : choisis quoi en faire, puis renvoie.';return}ER.textContent='';
-k.forEach(function(n){var s=S[n];m.push('> '+s.o[0]);if(s.r)m.push(s.r.s);if(s.r2)m.push(s.r2.s)});
+B.onclick=function(){var k=Object.keys(S),m=[];if(!k.length&&!(WK&&WK.any())&&!R.value.trim()&&!A.value.trim()&&!Z.value.trim()){ER.textContent='Choisis une option ou écris quelque chose.';return}
+k.forEach(auto);if(WK)WK.auto();if((WK&&WK.pend())||k.some(function(n){var s=S[n];return (s.r&&s.r.c=='j'&&!s.r.ch)||(s.r2&&s.r2.c=='j'&&!s.r2.ch)})){ER.textContent='Échec de justesse : choisis quoi en faire, puis renvoie.';return}ER.textContent='';
+if(WK)m=m.concat(WK.msg());k.forEach(function(n){var s=S[n];m.push('> '+s.o[0]);if(s.r)m.push(s.r.s);if(s.r2)m.push(s.r2.s)});
 var nt=note();if(nt!=null&&nt!=N0)m.push('Note provisoire : '+F1(N0)+' → '+F1(nt)+' (hors but, passe, résultat)');
 for(var x in X)if(X[x].checked)m.push(x+' : oui');if(R.value.trim())m.push('Réplique : « '+R.value.trim()+' »');
 if(A.value.trim())m.push('Action libre : '+A.value.trim()+' · d20 brut ('+d20()+')');if(Z.value.trim())m.push('(( '+Z.value.trim()+' ))');B.disabled=1;B.textContent='Envoyé';sendPrompt(m.join('\n'))};
