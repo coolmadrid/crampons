@@ -1,7 +1,7 @@
 /* ===== v7.1 : le portable d'Aden (téléphone complet, applis qui s'ouvrent dedans) ===== */
 APPS.contacts=['👤','Contacts','#8E8E93'];APPS.agenda=['📅','Agenda','#FF453A'];
 var TELM=!!D.tel||(D.s||[]).some(function(i){return Array.isArray(i)&&(i[0]=='HOME'||i[0]=='LOCK')}),
-TD={home:null,lock:null,conv:[],cur:null,mail:[],bank:[],fol:[],soc:[],news:[],ag:[],ph:[],no:[]},TEL=null,OUT=[],ORIG={};
+TD={home:null,lock:null,conv:[],cur:null,mail:[],bank:[],fol:[],soc:[],news:[],ag:[],ph:[],no:[],comp:[]},TEL=null,OUT=[],ORIG={},APPX={};
 for(var bk0 in BK)ORIG[bk0]=BK[bk0];
 function isSoc(md){return /^@|tiktok|instagram|twitter|\bx\b|reddit|threads|youtube|snap/i.test(md||'')}
 function same(a,b){if(!a||!b)return false;if(NZ(a)==NZ(b))return true;var x=who(a);return !!x&&x===who(b)}
@@ -58,10 +58,10 @@ w2=hm[3]?wdg('',MD(hm[3])):SC?wdg('wmt','<small>En direct</small><b>'+E(SC[1])+'
 w3=wdg('wwx','<span class="wxi">'+wx[0]+'</span><b>'+wx[2]+'</b><small>'+wx[1]+' · Lyon</small>'),
 w4=N0!=null?wdg('wnt','<small>Note moyenne</small><b>'+F1(N0)+'</b><i><u style="width:'+Math.round(N0*10)+'%"></u></i>'):TD.ag.length?wdg('wag','<small>📅 '+E(TD.ag[0][0])+'</small><b>'+E(TD.ag[0][1]||'')+'</b><em>'+MD(TD.ag[0][2])+'</em>'):wdg('wag','<small>📅 Agenda</small><em>Rien de prévu</em>');
 v.appendChild(H('div','hmw',w1+w2+w3+w4));
-var dock=['Téléphone','Messages','Mail','Agenda'],base=['Contacts','Photos','Banque','Réseaux','Actus','Notes','OL','Kinetik'];(hm[2]||[]).forEach(function(a){var n=appOf(a[0])[1];if(dock.indexOf(n)<0&&base.indexOf(n)<0)base.push(n)});
+var dock=['Téléphone','Messages','Mail','Agenda'],base=['Contacts','Photos','Banque','Réseaux','Actus','Notes','OL','Kinetik'].concat(Object.keys(APPX).map(function(k){return appOf(k)[1]}));(hm[2]||[]).forEach(function(a){var n=appOf(a[0])[1];if(dock.indexOf(n)<0&&base.indexOf(n)<0)base.push(n)});
 var gr=H('div','hmg');base.forEach(function(n,j){gr.appendChild(icon(n,b,j))});v.appendChild(gr);var dk=H('div','tdk');dock.forEach(function(n,j){dk.appendChild(icon(n,b,j+base.length))});v.appendChild(dk)}
 function icon(n,b,j){var ap=appOf(n),bd=b[NZ(ap[1])],e=H('button','hma','<span class="hmi" style="background:'+ap[2]+'">'+ap[0]+(bd?'<i>'+E(bd)+'</i>':'')+'</span><small>'+E(ap[1])+'</small>');e.type='button';e.style.animationDelay=(60+j*30)+'ms';e.onclick=function(){open(APP[NZ(ap[1])]||function(v){nav(v,ap[1]);empty(v,'Rien de nouveau dans '+ap[1]+'.')})};return e}
-var APP={};
+var APP={};for(var ax in APPX)APP[NZ(appOf(ax)[1])]=(function(f){return function(v){f(v,nav,empty,open)}})(APPX[ax]);
 APP.messages=function(v){nav(v,'Messages',['✎',function(){open(newMsg)}]);if(!TD.conv.length)return empty(v,'Aucune conversation.');
 TD.conv.forEach(function(c){var l=c.m[c.m.length-1]||[],g=grpOf(c),x=l[4]||{},pv=x.call?'📞 Appel manqué':x.v?'🎤 Message vocal':x.p?'📷 Photo':x.del?'Message supprimé':String(l[2]||'');
 var r=H('button','tcv'+(unreadConv(c)?' un':''),'<span class="mdot"></span><span class="tav">'+(g&&!who(c.t)?'👥':AV(c.t))+'</span><span class="tct"><span class="mh"><b>'+E(c.t)+'</b><time>'+E(l[3]||'')+'</time></span><span class="tcp">'+(l[1]=='Aden'?'Toi : ':g&&l[1]?E(l[1])+' : ':'')+E(pv.replace(/==|\*\*/g,'').slice(0,80))+'</span></span>');r.type='button';r.onclick=function(){open(function(v){thread(v,c)})};v.appendChild(r)})};
