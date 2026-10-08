@@ -2,7 +2,7 @@
 var XS=[],FIN=[],IB=null,PH2=null,BK={},
 HSH=function(s){var h=0;s=String(s);for(var q=0;q<s.length;q++)h=(h*31+s.charCodeAt(q))|0;return Math.abs(h)},
 SEENK=function(s){return 'crv:'+HSH(s)},
-VIEW=function(el,fn){var d=0,go=function(){if(!d){d=1;fn()}};try{var io=new IntersectionObserver(function(es){for(var q=0;q<es.length;q++)if(es[q].isIntersecting){io.disconnect();go();return}},{threshold:.1});setTimeout(function(){io.observe(el)},30);setTimeout(go,2500)}catch(e){setTimeout(go,200)}},
+VIEW=function(el,fn){var d=0,go=function(){if(!d){d=1;fn()}};try{var io=new IntersectionObserver(function(es){for(var q=0;q<es.length;q++)if(es[q].isIntersecting){io.disconnect();go();return}},{threshold:.1});setTimeout(function(){io.observe(el)},30);setTimeout(go,900)}catch(e){setTimeout(go,200)}},
 NC=['#FF9F0A','#30D158','#64D2FF','#BF5AF2','#FF6B8A','#FFD60A','#8E8CFF','#FF8A65'],
 ncol=function(n){return NC[HSH(n)%NC.length]},
 AV=function(n){var w=who(n);return w?w[0]:E(String(n||'?').replace(/^@/,'').charAt(0).toUpperCase())},
@@ -23,13 +23,7 @@ CPY={'@':function(i){return 'Mail de '+i[1]+' : '+(i[2]||'')+'\n'+(i[3]||'')},Q:
 function mkPhone(title,day){var o={m:[],el:H('div','ph2')};o.el.dataset.app='Messages';FIN.push(function(){buildPhone(o,title,day)});return o}
 BK.SMS=function(i){PH2=mkPhone(i[1],i[2]);return PH2.el};
 BK.S=function(i){var nw=!PH2;if(nw)PH2=mkPhone(null,null);PH2.m.push(i);return nw?PH2.el:null};
-function buildPhone(o,title,day){var M=o.m,el=o.el,snd=[],lastMe=-1,lastHim=-1,stop=0;
-M.forEach(function(i,j){if(i[1]=='Aden')lastMe=j;else{lastHim=j;if(snd.indexOf(i[1])<0)snd.push(i[1])}});
-var grp=snd.length>1,nm=title||snd[0]||'Messages',w0=who(nm),
-hd=H('div','pth','<span class="pbk">‹</span><span class="pav">'+(grp&&!w0?'👥':AV(nm))+'</span><span class="pnm"><b>'+E(nm)+'</b><small class="pst">'+(grp?E(snd.join(', ')):'')+'</small></span><span class="pic2">📞</span>'),
-bd=H('div','pbd');el.appendChild(hd);el.appendChild(bd);if(day)bd.appendChild(H('div','pdy',E(day)));
-var st=hd.querySelector('.pst'),base=st.textContent;
-var items=M.map(function(i,j){var me=i[1]=='Aden',x=i[4]||{},inner;
+function smsItems(M,grp,lastMe,lastHim){return M.map(function(i,j){var me=i[1]=='Aden',x=i[4]||{},inner;
 if(x.call)return {el:H('div','pcall','📞 Appel manqué'+(x.call>1?' ('+x.call+')':'')+(i[3]?' · '+E(i[3]):'')+(i[2]?'<br><small>'+E(i[2])+'</small>':'')),me:me,sys:1};
 if(x.del)inner='<span class="sdel">⊘ Ce message a été supprimé</span>';
 else if(x.v){var bars='';for(var b=0;b<28;b++)bars+='<i style="height:'+(4+HSH(String(i[2])+b)%17)+'px"></i>';inner='<span class="vn"><button class="vp" type="button">▶</button><span class="vw">'+bars+'</span><span class="vd">'+E(x.v)+'</span></span><span class="vt" hidden>'+MD(i[2])+'</span>'}
@@ -39,7 +33,14 @@ var it=H('div','sm2'+(me?' me':'')+(x.p?' img':'')+(x.v?' voc':''),(grp&&!me?'<s
 if(x.v){var vb=it.querySelector('.vp'),vt=it.querySelector('.vt');vb.onclick=function(ev){ev.stopPropagation();vt.hidden=!vt.hidden;vb.textContent=vt.hidden?'▶':'❚❚';it.classList.toggle('play',!vt.hidden)}}
 var r={el:it,me:me,n:i[1],len:String(i[2]||'').length};
 if(j==lastMe)r.rc=H('div','prc',E(x.lu?'Lu à '+x.lu:(lastHim>j?'Lu':'Distribué')));
-return r});
+return r});}
+function buildPhone(o,title,day){var M=o.m,el=o.el,snd=[],lastMe=-1,lastHim=-1,stop=0;
+M.forEach(function(i,j){if(i[1]=='Aden')lastMe=j;else{lastHim=j;if(snd.indexOf(i[1])<0)snd.push(i[1])}});
+var grp=snd.length>1,nm=title||snd[0]||'Messages',w0=who(nm),
+hd=H('div','pth','<span class="pbk">‹</span><span class="pav">'+(grp&&!w0?'👥':AV(nm))+'</span><span class="pnm"><b>'+E(nm)+'</b><small class="pst">'+(grp?E(snd.join(', ')):'')+'</small></span><span class="pic2">📞</span>'),
+bd=H('div','pbd');el.appendChild(hd);el.appendChild(bd);if(day)bd.appendChild(H('div','pdy',E(day)));
+var st=hd.querySelector('.pst'),base=st.textContent;
+var items=smsItems(M,grp,lastMe,lastHim);
 var ty=H('div','sm2 typ','<span class="tyd"><i></i><i></i><i></i></span>'),hint=H('div','phint','Touche pour tout afficher');
 function put(r){bd.appendChild(r.el);if(r.rc)bd.appendChild(r.rc)}
 function fin2(){var lt='';for(var q=M.length-1;q>=0;q--)if(M[q][1]!='Aden'&&M[q][3]){lt=M[q][3];break}st.textContent=grp?base:(lt?'vu à '+lt:'en ligne');st.classList.remove('tw')}
@@ -48,8 +49,8 @@ var key=SEENK(JSON.stringify(M));
 if(sg(key)=='1'||G.classList.contains('quick'))return showAll();
 el.appendChild(hint);el.onclick=function(){if(!stop)showAll()};
 VIEW(el,function(){var q=0;(function nx(){if(stop)return;if(q>=items.length)return showAll();var r=items[q++];
-if(r.me||r.sys){setTimeout(function(){if(stop)return;put(r);nx()},r.me?550:300)}
-else{bd.appendChild(ty);st.textContent=grp?r.n+' écrit…':'écrit…';st.classList.add('tw');setTimeout(function(){if(stop)return;ty.remove();put(r);st.textContent=grp?base:'en ligne';st.classList.remove('tw');nx()},Math.min(1700,600+r.len*14))}})()})}
+if(r.me||r.sys){setTimeout(function(){if(stop)return;put(r);nx()},r.me?420:250)}
+else{bd.appendChild(ty);st.textContent=grp?r.n+' écrit…':'écrit…';st.classList.add('tw');setTimeout(function(){if(stop)return;ty.remove();put(r);st.textContent=grp?base:'en ligne';st.classList.remove('tw');nx()},Math.min(1200,450+r.len*10))}})()})}
 
 /* ---------- Mail ---------- */
 var FD=[['Club','#E24B4A','royer|brossard|clemence|le gall|garcia|olympique lyonnais|ol'],['Équipe','#EF9F27','aissatou|konate|clara|dumont|leclerc|hannah|price|kaz|ouardi'],['FFF','#3D6BFF','maziere|lacombe|fff|federation|equipe de france'],['Sponsors','#1D9E75','mercier|fontaine|adidas|kinetik|takeda|rhone atelier|blue lock'],['Presse','#64D2FF','camille|roussel|lenoir|kruger|le floch|tiago|branco|journaliste|morand|hugo|redaction'],['Sciences Po','#B07CFF','castellan|vidal|salome|lhermitte|sarah|mekki|sciences po|iep'],['Ego Dreamers','#F09595','lyes|ines|gerard|yasmine|rafa|monique|ego dreamers'],['Indésirables','#993C1D','valat']];
