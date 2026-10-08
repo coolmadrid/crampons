@@ -504,7 +504,7 @@ function fin(){if(done)return;done=1;if(ti)clearInterval(ti);ov.classList.add('e
 setTimeout(function(){ov.remove();[].forEach.call(G.children,function(c){c.classList.remove('cv','in')})},1800)}
 skip.onclick=function(e){e.stopPropagation();fin()};ov.onclick=function(){if(k<T.length)next()};setTimeout(next,80)}
 FIN.push(function(){var tb=G.querySelector('.tbr');if(!tb)return;var b=H('button','','🎬');b.title='Cinématique';b.onclick=function(){cinema(true)};tb.insertBefore(b,tb.querySelector('button:nth-child(2)')||null);
-var key='crcin:'+HSH(HH+(D.q||''));var auto=D.cine||(D.s||[]).some(function(i){return Array.isArray(i)&&i[0]=='CH'});if(auto&&sg(key)!='1'){ss(key,'1');setTimeout(function(){cinema(false)},150)}});
+var key='crcin:'+HSH(HH+(D.q||''));var auto=!D.mode&&(D.cine||(D.s||[]).some(function(i){return Array.isArray(i)&&i[0]=='CH'}));if(auto&&sg(key)!='1'){ss(key,'1');setTimeout(function(){cinema(false)},150)}});
 
 /* ---------- 6. conférence de presse ---------- */
 BK.CONF=function(i){var el=H('div','conf'),Q=i[1]||[],A=[];el.dataset.app='Actus';
@@ -611,6 +611,18 @@ function focus(k){cards.forEach(function(c,j){c.classList.toggle('act',j==k)});v
 room.querySelectorAll('.cfs.j').forEach(function(s){s.onclick=function(){var k=+s.dataset.q;focus(k);try{cards[k].scrollIntoView({behavior:'smooth',block:'center'})}catch(e){}cards[k].querySelector('textarea').focus()}});
 cards.forEach(function(c,k){var ta=c.querySelector('textarea');ta.addEventListener('focus',function(){focus(k)});ta.addEventListener('input',function(){scr.textContent=ta.value;room.classList.toggle('typing',!!ta.value)});c.querySelector('.confk').addEventListener('click',function(){scr.textContent=c.querySelector('.confk').classList.contains('on')?'Pas de commentaire.':''})});
 setTimeout(function(){focus(0)},400);return el}})();
+
+/* ---------- mode choisi par le MJ : D.mode = "cine" | "vn" | "tv" | "tv+chat" | "chat" | "lv" | "none", ou une liste séparée par des virgules ---------- */
+FIN.push(function(){var M=String(D.mode||'').toLowerCase();if(!M)return;var key='crmode:'+HSH(HH+(D.q||'')+M),first=sg(key)!='1';ss(key,'1');
+var L=M.split(/[,+\s]+/).filter(Boolean),has=function(k){return L.indexOf(k)>-1},btn=function(re){var tb=G.querySelector('.tbr');return tb?[].slice.call(tb.children).filter(function(b){return re.test(b.textContent)})[0]:null};
+if(has('none')||has('aucun')){ss('crcin:'+HSH(HH+(D.q||'')),'1');return}
+if(has('tv')||has('tele')||has('télé')){var b=btn(/Télé/);if(b&&!G.classList.contains('tv'))b.click()}
+if(has('chat')){var c=btn(/Chat/);if(c&&!G.classList.contains('chat'))c.click()}
+if(has('lv')||has('match')){var m=btn(/^⚽/);if(m&&!G.classList.contains('lv'))m.click()}
+if(!first)return;
+var after=function(){if(has('vn')||has('novel')||has('roman'))setTimeout(vnOpen,200)};
+if(has('cine')||has('cinema')||has('cinématique')||has('cinematique')){ss('crcin:'+HSH(HH+(D.q||'')),'1');setTimeout(function(){cinema(true);var w=setInterval(function(){if(!G.querySelector('.cin')){clearInterval(w);after()}},300)},150)}
+else{ss('crcin:'+HSH(HH+(D.q||'')),'1');after()}});
 var HN=H('span','hr'),HH=D.h||'',SC=null,MI=null,LI=[];HH.split(' · ').forEach(function(x){var m=/^(.+?)\s+(\d+)\s*-\s*(\d+)\s+(.+)$/.exec(x);if(m&&!SC)SC=m;else if(/^\d+\s*e\b|^\d+e(\+\d+)?$|^\d+'|mi-temps|^\d+\s*('|e)/i.test(x))MI=x;else LI.push(x)});
 var hd=H('div','hd');if(SC){var ca=clb(SC[1]),cb=clb(SC[4]);hd.classList.add('sbh');hd.innerHTML='<div class="hrow">'+(D.n?'<i class="live">EN DIRECT</i>':'')+'</div><div class="sbg"><span class="tm"><i style="background:'+ca[1]+';border-color:'+ca[2]+'"></i>'+'<span class="tn">'+E(SC[1])+'</span></span><span class="sco">'+SC[2]+'<em>-</em>'+SC[3]+'</span><span class="tm r"><span class="tn">'+E(SC[4])+'</span><i style="background:'+cb[1]+';border-color:'+cb[2]+'"></i></span></div>'+(MI?'<span class="mi">'+E(MI)+'</span>':'')+(LI.length?'<span class="hl">'+E(LI.join(' · '))+'</span>':'')}
 else hd.innerHTML=(D.n?'<i class="live">EN DIRECT</i>':'')+'<span class="hl">'+E(HH)+'</span>';G.appendChild(hd);(hd.querySelector('.hrow')||hd).appendChild(HN);

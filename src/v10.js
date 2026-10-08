@@ -70,7 +70,7 @@ function fin(){if(done)return;done=1;if(ti)clearInterval(ti);ov.classList.add('e
 setTimeout(function(){ov.remove();[].forEach.call(G.children,function(c){c.classList.remove('cv','in')})},1800)}
 skip.onclick=function(e){e.stopPropagation();fin()};ov.onclick=function(){if(k<T.length)next()};setTimeout(next,80)}
 FIN.push(function(){var tb=G.querySelector('.tbr');if(!tb)return;var b=H('button','','🎬');b.title='Cinématique';b.onclick=function(){cinema(true)};tb.insertBefore(b,tb.querySelector('button:nth-child(2)')||null);
-var key='crcin:'+HSH(HH+(D.q||''));var auto=D.cine||(D.s||[]).some(function(i){return Array.isArray(i)&&i[0]=='CH'});if(auto&&sg(key)!='1'){ss(key,'1');setTimeout(function(){cinema(false)},150)}});
+var key='crcin:'+HSH(HH+(D.q||''));var auto=!D.mode&&(D.cine||(D.s||[]).some(function(i){return Array.isArray(i)&&i[0]=='CH'}));if(auto&&sg(key)!='1'){ss(key,'1');setTimeout(function(){cinema(false)},150)}});
 
 /* ---------- 6. conférence de presse ---------- */
 BK.CONF=function(i){var el=H('div','conf'),Q=i[1]||[],A=[];el.dataset.app='Actus';
