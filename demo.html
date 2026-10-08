@@ -1,0 +1,63 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>demo</title>
+<style>body{margin:0;padding:12px;background:#111;font-family:sans-serif}</style></head><body>
+<div id=g></div>
+<script>
+window.sendPrompt=function(s){console.log('PROMPT',s)};
+var Q=location.search;
+window.D={
+h:(Q.indexOf('match')>-1?"OL 1 - 0 Lens · 67e · ":"")+"Samedi 12 mars 2027 · 20h45 · Groupama Stadium",
+q:"Qu'est-ce que tu fais ?",
+n:"6,5",d:2,
+P:{"Théo Garnier":72,"Jaouen":40,"Mme Benali":85,"Royer":58},
+s:[
+"Le couloir sent le camphre et la pelouse coupée. Vasseur t'attend, bras croisés, pendant que le kop chauffe déjà au-dessus de vos têtes. Il pleut sur Décines depuis midi. « Tu joues titulaire. Pas de cadeau. »",
+["~","Six mois que j'attends ça."],
+["Royer","Tu joues simple. Tu me regardes. Tu respires."],
+["+","Confiance +2"],
+["+","Royer −3"],
+["@","Philippe Garnier","Avant le match","Je serai en tribune. Montre-leur. **Papa**","19:02",{t:"Signé",a:[["Contrat_image_2027.pdf","Article 1 : le joueur accorde…"],["photo_tribune.jpg",""]]}],
+["@","Clémence Morel","Plan média d'après-match","Zone mixte à 23h, 3 questions max.","18:40",{lu:1}],
+["SMS","Théo","sam. 12"],
+["S","Théo","T'es prêt frérot ?","19:10"],
+["S","Aden","Jamais été aussi prêt.","19:11",{re:"🔥"}],
+["S","Théo","","19:12",{v:"0:08"}],
+["C","Aden Rodrigues","MOC","OL",[6,5,7,7,2,4,6,5],3,340,500,"Vision · Sang-froid"],
+["XI","OL","4-2-3-1",["1 Lopes","2 Mata","4 Caleta-Car","5 Niakhaté","3 Tagliafico","6 Caqueret","8 Matic (c)","7 Cherki","10 Aden","9 Lacazette","11 Fofana"]],
+["J","Pression du match",78,100],
+["#","@olympiquelyonnais","Première titularisation pour Aden Rodrigues (18 ans) ! 🦁",{l:"12,4k",r:"2 310",v:1,h:"2 h"}],
+["#","Instagram · @aden.rdg","Premier match au Groupama. Merci la famille. 🦊",{l:"48 212",p:"🏟️",c:[["@theo_g","frérooo 🔥"],["@ol_fan69","futur ballon d'or"]]}],
+["#","TikTok · @aden.rdg","POV : ta première titu en L1 😮‍💨",{l:"210k",r:"3 400",p:"🦊",v:1}],
+["UNE","L'Équipe","Le gamin de Vénissieux","Le centre de formation lyonnais tient son nouveau bijou.","🦊",[["Aden","6,5"],["Lacazette","7"]],"13 mars","Aden Rodrigues, hier soir à Décines."],
+["UNE","So Foot","Aden, le gosse qui ne tremble pas","Portrait d'un milieu qui joue comme on parle.","🎙️",[],"avril"],
+["INFO","Aden Rodrigues titulaire pour la première fois en Ligue 1","Flash"],
+["TB","Lacazette","Aden","Vasseur"],
+["AMB",80,"Qui ne saute pas n'est pas Lyonnais"],
+["K","Minute par minute",[["12'","Première touche propre"],["34'","Frappe contrée"],["45+2'","But de Lacazette"],["67'","Carton jaune pour Matic"],["78'","Changement : Morel entre"]]],
+["=","Carton jaune pour Matic","j"],
+["=","Carton rouge pour Sylla","e"],
+["SUB","Morel","Matic","78'"],
+["SUB","+4"],
+["MO",62,"Domination"],
+["ST",[["Possession",58,42],["Tirs",11,6],["Passes",420,312]]],
+["T",[[50,55,'a','Aden','h',30,70],[70,30,'a','Lacazette','g'],[40,40,'b','Sylla']],[[30,70,50,55,70,30]],1],
+["L","Temps forts",[["45'","⚽","But de Lacazette"],["67'","🟨","Jaune pour Matic"]]],
+["ACH","Première titularisation","Un match de Ligue 1 dans le onze de départ","🏅"],
+["BANK","Mars 2027",18450,[["Salaire OL",4200,"💶"],["Loyer",-980,"🏠"],["Adidas",1500,"👟"],["Resto avec Théo",-64,"🍝"],["Essence",-70,"⛽"]],"Prime de match versée"],
+["AG",[["Dim. 13","11h","Décrassage","🏃"],["Mar. 15","20h45","Match · OL vs Lens","⚽"],["Mer. 16","9h","Cours Sciences Po","🎓"]]],
+["PH",[["Vestiaire d'avant-match","🧦","12 mars"],["Le kop","🔴","12 mars"],["Avec Théo","🤝","11 mars"]]],
+["NO","À faire","Appeler Farmor\nRendre le mémoire\nAcheter du riz","12 mars"],
+["NB","Carnet",["Jouer simple","~Chercher Cherki","*Respirer"],"12 mars"],
+["Q","On ne joue pas pour être aimé.","Royer"]
+].concat(Q.indexOf('tel')>-1?[["HOME","20:31",[["Messages",1],["Mail",2]],"","samedi 12 mars"]]:[]),
+o:[
+["Jouer simple","Un match propre, sans prise de risque",[2,1],12],
+["Chercher la différence","Tenter le geste qui fait lever le stade",[3,0,1],16,1],
+["Parler à Lacazette","Lui demander de te chercher dans l'axe",[1,2],"Lacazette +4"]
+],
+k:["Garder un œil sur Théo en tribune"],
+c:["!stats","!compo"]
+};
+if(Q.indexOf('but')>-1)D.but="Lacazette, de la tête";
+</script>
+<script src="w.js"></script>
+</body></html>
