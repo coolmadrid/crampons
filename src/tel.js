@@ -50,7 +50,7 @@ function flash(t){var f=H('div','tfl',E(t));T.appendChild(f);setTimeout(function
 /* ---- écrans ---- */
 function lock(v){var l=ORIG.LOCK(TD.lock);l.classList.add('in');v.appendChild(l);var u=l.querySelector('.lkf2');u.innerHTML='<button class="tul" type="button">Déverrouiller</button>';u.firstChild.onclick=function(e){e.stopPropagation();T.dataset.ul=1;stack=[];show(home,'up')}}
 function home(v){var b=badges();v.classList.add('thm');
-var mt=null;for(var q=0;q<TD.ag.length;q++)if(/match|⚽|vs\b|journée/i.test((TD.ag[q][2]||'')+(TD.ag[q][3]||''))){mt=TD.ag[q];break}
+var mt=null;for(var q=0;q<TD.ag.length&&!mt;q++)if(/match|\bvs\b|journée/i.test(TD.ag[q][2]||''))mt=TD.ag[q];for(var q2=0;q2<TD.ag.length&&!mt;q2++)if(/⚽/.test((TD.ag[q2][2]||'')+(TD.ag[q2][3]||'')))mt=TD.ag[q2];
 var hh=(/(\d{1,2})\s?[h:]/.exec(tm)||[0,12])[1]*1,wx=WX=='rain'?['🌧️','Pluie','11°']:WX=='snow'?['❄️','Neige','-1°']:WX=='sun'?['☀️','Grand soleil','27°']:hh>=21||hh<6?['🌙','Nuit claire','9°']:hh<10?['🌤️','Matin frais','12°']:['⛅','Éclaircies','17°'],
 wdg=function(c,h){return '<div class="hme '+c+'">'+h+'</div>'},
 w1='<div class="hmc"><b>'+E(tm)+'</b><small>'+E(hm[4]||'')+'</small></div>',
