@@ -123,7 +123,7 @@ else if(k=='#'){var md=i[1]||'',ty=/^@|tiktok|instagram|twitter|\bx\b|reddit|thr
 if(ty=='so')G.appendChild(H('div','soc','<div class="sh"><span class="sav">'+E((md.replace(/^@/,'')[0]||'@').toUpperCase())+'</span><b>'+E(md)+'</b></div><div class="st">'+E(i[2])+'</div><div class="sa">♡ &nbsp; ⟲ &nbsp; 💬</div>'));
 else G.appendChild(H('div','pr'+(ty?' '+ty:''),'<span class="pm">'+E(md)+'</span><span class="pt">'+E(i[2])+'</span>'))}
 else if(k=='='){if(/\bVAR\b/.test(i[1]))G.appendChild(H('div','var','<span class="vst">VAR</span><span>'+E(i[1])+'</span>'));else{var cc=crd(i[1]),rd=/card rd/.test(cc);G.appendChild(H('div','rl '+(i[2]||'')+(cc?' crdx':''),(cc?'<span class="cardx'+(rd?' rd':' yl')+'"><i class="arm"></i><i class="cd"></i></span>':'')+E(i[1])));if(rd){G.classList.add('redfl');setTimeout(function(){G.classList.remove('redfl')},1500)}}}
-else if(k=='T')G.appendChild(terr(i[1],i[2],i[3]));
+else if(k=='T')G.appendChild(terr(i[1],i[2],i[3],i[4]));
 else if(k=='K'){var c;if(i[2].length>1&&i[2].every(function(t){return /^\d{1,3}\s*(['e]|\+)/.test(String(t[0]))}))c=frise(i);else{c=H('div','kd','<b>'+E(i[1])+'</b><div class="tl">'+i[2].map(function(t){return '<div><small>'+E(t[0])+'</small><br>'+E(t[1])+'</div>'}).join('')+'</div>')}if(i[3])c.style.borderColor=i[3];G.appendChild(c)}
 else if(k=='J')G.appendChild(H('div','',bar(i[1],i[2],i[3])));else if(k=='C')G.appendChild(card(i));
 else if(k=='S'){if(!PH){PH=H('div','ph','<div class="phh">Messages</div>');G.appendChild(PH)}var me=i[1]=='Aden';PH.appendChild(H('div','sm'+(me?' me':''),(me?'':'<small>'+E(i[1])+'</small>')+E(i[2])+(i[3]?'<em>'+E(i[3])+'</em>':'')))}

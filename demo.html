@@ -5,7 +5,7 @@
 window.sendPrompt=function(s){console.log('PROMPT',s)};
 var Q=location.search;
 window.D={
-h:(Q.indexOf('match')>-1?"OL 1 - 0 Lens · 67e · ":"")+"Samedi 12 mars 2027 · 20h45 · Groupama Stadium",
+h:(Q.indexOf('match')>-1?"OL 1 - 0 Lens · 67e · ":Q.indexOf('pre')>-1?"OL vs Lens · ":"")+"Samedi 12 mars 2027 · 20h45 · Groupama Stadium",
 q:"Qu'est-ce que tu fais ?",
 n:"6,5",d:2,
 P:{"Théo Garnier":72,"Jaouen":40,"Mme Benali":85,"Royer":58},
@@ -39,7 +39,7 @@ s:[
 ["SUB","+4"],
 ["MO",62,"Domination"],
 ["ST",[["Possession",58,42],["Tirs",11,6],["Passes",420,312]]],
-["T",[[50,55,'a','Aden','h',30,70],[70,30,'a','Lacazette','g'],[40,40,'b','Sylla']],[[30,70,50,55,70,30]],1],
+["T",[[50,55,'a','Aden','h',30,70],[70,30,'a','Lacazette','g'],[40,40,'b','Sylla'],[88,50,'b','Samba','b']],[[20,80,30,70,50,55],[50,55,60,45,70,30],[70,30,85,38,96,47]],1,"BUT"],
 ["L","Temps forts",[["45'","⚽","But de Lacazette"],["67'","🟨","Jaune pour Matic"]]],
 ["ACH","Première titularisation","Un match de Ligue 1 dans le onze de départ","🏅"],
 ["BANK","Mars 2027",18450,[["Salaire OL",4200,"💶"],["Loyer",-980,"🏠"],["Adidas",1500,"👟"],["Resto avec Théo",-64,"🍝"],["Essence",-70,"⛽"]],"Prime de match versée"],
@@ -48,6 +48,7 @@ s:[
 ["NO","À faire","Appeler Farmor\nRendre le mémoire\nAcheter du riz","12 mars"],
 ["NB","Carnet",["Jouer simple","~Chercher Cherki","*Respirer"],"12 mars"],
 ["Q","On ne joue pas pour être aimé.","Royer"],
+["CONF",[["Camille","Aden, première titularisation et un but : vous attendiez-vous à ça ?",["Rester humble","Remercier le groupe","Assumer l'ambition"]],["Lenoir","Le coach dit que vous jouez trop simple. Vous êtes d'accord ?",["Botter en touche","Défendre le coach","Répondre franchement"]],["Journaliste turc","Galatasaray vous suit. Un mot pour Istanbul ?"]],"Zone mixte · après OL - Lens"],
 ["TF","67'","Cherki décale sur ta droite, Sylla est en retard. Le but est à vingt mètres, Lacazette appelle au second poteau.",[["Frapper","Enroulé petit filet",[3,1],15],["Servir Lacazette","Passe au second poteau",[2,2],12],["Fixer et repiquer","Dribble vers l'axe",[3,0,1],"Sylla +5",1]],"Temps fort"],
 ["BUL","OL",[["Lopes",6],["Mata",5.5],["Caleta-Car",6],["Niakhaté",7],["Tagliafico",6],["Caqueret",6.5],["Matic",5],["Cherki",7.5],["Aden",7],["Lacazette",8],["Fofana",6]],"Lacazette","Lens",[["Samba",6],["Gradit",5],["Danso",6.5],["Medina",5.5],["Frankowski",6],["Sylla",4],["Thomasson",6],["Sotoca",6.5],["Fulgini",5.5],["Wahi",6],["Saïd",5]]],
 ["LIG","Ligue 1",[["PSG",48,20,"+34"],["Monaco",41,20,"+18"],["OL",40,20,"+15","VVNVD"],["Marseille",38,20,"+12"],["Lille",35,20,"+8"],["Lens",33,20,"+5"],["Nice",31,20,"+2"],["Rennes",29,20,"0"],["Brest",27,20,"-2"],["Strasbourg",26,20,"-4"],["Toulouse",24,20,"-6"],["Nantes",22,20,"-8"],["Reims",21,20,"-9"],["Auxerre",20,20,"-10"],["Le Havre",18,20,"-14"],["Angers",17,20,"-16"],["Montpellier",14,20,"-22"],["Saint-Étienne",12,20,"-25"]]],
