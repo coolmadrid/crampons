@@ -57,10 +57,10 @@
 
 /* --- 3. visual novel --- */
 #g.vnp{height:600px;max-height:94vh}
-#g .vn{position:absolute;inset:0;z-index:40;background:#000;overflow:hidden;animation:none;transition:opacity .7s ease;cursor:pointer;outline:0}
-#g .vn.end{opacity:0;pointer-events:none}
-#g .vn .cbg{animation:none;transform:scale(1.02)}
-#g .vn:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),transparent 30%,transparent 55%,rgba(0,0,0,.75) 100%);z-index:2;pointer-events:none}
+#g .vnov{position:absolute;inset:0;z-index:40;background:#000;overflow:hidden;animation:none;transition:opacity .7s ease;cursor:pointer;outline:0}
+#g .vnov.end{opacity:0;pointer-events:none}
+#g .vnov .cbg{animation:none;transform:scale(1.02)}
+#g .vnov:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),transparent 30%,transparent 55%,rgba(0,0,0,.75) 100%);z-index:2;pointer-events:none}
 #g .vns{position:absolute;left:0;right:0;top:0;bottom:30%;z-index:3;pointer-events:none}
 #g .vnsp{position:absolute;bottom:0;width:40%;display:flex;justify-content:center;align-items:flex-end;transition:transform .4s cubic-bezier(.2,1.2,.4,1),filter .4s,opacity .4s;opacity:.55;filter:brightness(.55) saturate(.7);transform:translateY(10px) scale(.92)}
 #g .vnsp.l{left:6%}#g .vnsp.r{right:6%}
@@ -77,7 +77,7 @@
 #g .vnx{position:absolute;right:14px;bottom:8px;font-style:normal;color:#FAC775;opacity:0}#g .vnb.done .vnx{opacity:1;animation:vnx 1s ease-in-out infinite alternate}@keyframes vnx{to{transform:translateX(4px)}}
 #g .vnp{position:absolute;left:0;bottom:0;height:3px;background:#FAC775;z-index:5;transition:width .3s}
 #g .vnc{position:absolute;left:14px;bottom:12px;z-index:5;font:600 11px/1 "Barlow Condensed",sans-serif;letter-spacing:.14em;color:rgba(255,255,255,.7)}
-#g .vn .csk{bottom:12px}
+#g .vnov .csk{bottom:12px}
 @media (max-width:420px){#g .vnsp{width:46%}#g .vnsp.l{left:2%}#g .vnsp.r{right:2%}#g .vnb p{font-size:15.5px}#g .vnb{bottom:5%}}
 
 /* --- 5. mode photo --- */

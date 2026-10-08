@@ -53,8 +53,8 @@ c.onclick=function(){var on=!G.classList.contains('chat');chatOn(on);c.classList
 
 /* ---------- 3. visual novel ---------- */
 function vnSteps(){var S=[],SP=['+','=','T','K','J','C','S','~','O','L','#'];(D.s||[]).forEach(function(i){if(typeof i=='string'){if(!/^\s*\*{3}\s*$/.test(i))S.push({t:'n',x:i})}else if(Array.isArray(i)){var k=i[0];if(k=='~')S.push({t:'th',x:i[1]});else if(k=='+')S.push({t:'nt',x:String(i[1]||'').replace(/^\[|\]$/g,'')});else if(k=='Q')S.push({t:'q',x:i[1],w:i[2]});else if(!BK[k]&&SP.indexOf(k)<0&&typeof i[1]=='string'){S.push({t:k=='Aden'?'me':'d',n:k,x:i[1],w:who(k)})}}});return S}
-function vnOpen(){if(G.querySelector('.vn'))return;var S=vnSteps();if(!S.some(function(s){return s.t=='d'||s.t=='me'}))return;
-var kind=sceneKind(),ov=H('div','vn'),st=H('div','vns'),box=H('div','vnb'),bar=H('div','vnp'),skip=H('button','csk','Passer ▸'),cnt=H('span','vnc'),SL={},side=0,q=0,ti=null,typing=0;skip.type='button';
+function vnOpen(){if(G.querySelector('.vnov'))return;var S=vnSteps();if(!S.some(function(s){return s.t=='d'||s.t=='me'}))return;
+var kind=sceneKind(),ov=H('div','vnov'),st=H('div','vns'),box=H('div','vnb'),bar=H('div','vnp'),skip=H('button','csk','Passer ▸'),cnt=H('span','vnc'),SL={},side=0,q=0,ti=null,typing=0;skip.type='button';
 ov.innerHTML=sceneBg(kind);ov.appendChild(H('div','cgr'));ov.appendChild(st);ov.appendChild(box);ov.appendChild(bar);ov.appendChild(skip);ov.appendChild(cnt);G.classList.add('cinp','vnp');G.insertBefore(ov,G.firstChild);try{G.scrollIntoView({block:'start'})}catch(e){}
 function spr(n,w){if(!SL[n]){var s=H('div','vnsp '+(n=='Aden'?'r':(side++%2?'r':'l'))),raw=pget(n),g=typeof raw=='number'?raw:(typeof raw=='string'&&/\d/.test(raw)?parseInt(raw.replace(/[^\d]/g,''),10):null),tr=g!=null?tier(g):'';s.innerHTML='<i style="--rc:'+(PAL[tr]||'#185FA5')+'">'+(n=='Aden'?'🦊':w?w[0]:E(n.charAt(0)))+'</i>';st.appendChild(s);SL[n]=s}return SL[n]}
 function show(){if(q>=S.length)return fin();var s=S[q],txt=String(s.x||'');[].forEach.call(st.children,function(c){c.classList.remove('on','ex','ask','dim')});
