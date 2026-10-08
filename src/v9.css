@@ -22,6 +22,8 @@
 #g .tft{margin:0;padding:12px 14px 6px;font:16px/1.55 "Source Serif 4",Georgia,serif;color:#EEF5FC}
 #g .tf .op{padding:4px 10px 10px}
 #g .tf .ob{background:rgba(12,68,124,.55)}
+#g .tf .tfa{width:calc(100% - 20px);margin:0 10px 12px;min-height:46px;background:rgba(6,34,63,.8)}
+#g.light .tf .tfa{background:#F3F6FA}
 
 /* --- 8. classement, calendrier, tableau --- */
 #g .lig,#g .cal2,#g .ko{margin:14px 0;border-radius:14px;overflow:hidden;background:rgba(4,20,40,.6);border:1px solid rgba(24,95,165,.7);font-variant-numeric:tabular-nums}

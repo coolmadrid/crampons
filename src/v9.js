@@ -44,7 +44,7 @@ var r=H('div','bulr'+(me?' me':'')+(isH?' hdm':''),'<span class="buln">'+(isH?'<
 BK.BUL=function(i){var el=H('div','bul'),hdm=i[3]||'';el.innerHTML='<div class="bulm"><b>Les notes</b>'+(hdm?'<span class="bulhd">★ Homme du match · '+E(hdm)+'</span>':'')+'</div>';var w=H('div','bulw'+(i[4]?' two':''));w.appendChild(bulTeam(i[1],i[2],hdm));if(i[4])w.appendChild(bulTeam(i[4],i[5],hdm));el.appendChild(w);return el};
 
 /* ---------- temps fort jouable ---------- */
-BK.TF=function(i){var el=H('div','tf'),op=H('div','op');el.innerHTML='<div class="tfh"><span class="tfm">'+E(i[1]||'')+'</span><span class="tfk">'+E(i[4]||'Temps fort')+'</span><i class="live">EN DIRECT</i></div>'+(i[2]?'<p class="tft">'+MD(i[2])+'</p>':'');el.appendChild(op);optsUI(i[3]||[],op,false,'['+(i[1]||'temps fort')+']');return el};
+BK.TF=function(i){var el=H('div','tf'),op=H('div','op');el.innerHTML='<div class="tfh"><span class="tfm">'+E(i[1]||'')+'</span><span class="tfk">'+E(i[4]||'Temps fort')+'</span><i class="live">EN DIRECT</i></div>'+(i[2]?'<p class="tft">'+MD(i[2])+'</p>':'');el.appendChild(op);optsUI(i[3]||[],op,false,'['+(i[1]||'temps fort')+']');var ta=H('textarea','tfa');ta.placeholder='Ou une action libre à la '+(i[1]||'minute')+' (un d20 brut est joint)';el.appendChild(ta);ta.oninput=function(){up()};XS.push({any:function(){return !!ta.value.trim()},msg:function(){var v=ta.value.trim();return v?['> ['+(i[1]||'temps fort')+'] Action libre : '+v+' · d20 brut ('+d20()+')']:[]}});return el};
 
 /* ---------- contrat et sponsor ---------- */
 function decide(el,lbl,x,yes,no){if(x.st){el.appendChild(H('div','ctst '+(/sign|accept/i.test(x.st)?'ok':'ko'),E(x.st)));return}

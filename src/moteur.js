@@ -156,7 +156,7 @@ api.jets=function(){return Object.keys(S).filter(function(n){return S[n].o[2]!=n
 api.msg=function(){var m=[];Object.keys(S).forEach(function(n){var s=S[n];m.push('> '+(tag?tag+' ':'')+s.o[0]);if(s.r)m.push(s.r.s);if(s.r2)m.push(s.r2.s)});return m};
 OPI.push(api);return api}
 var O=H('div','op');G.appendChild(O);var MAIN=optsUI(D.o||[],O,D.m,''),S=MAIN.S;
-G.appendChild(SEL);function up(){var k=Object.keys(S),kk=0,jj=0;OPI.forEach(function(a){kk+=a.keys().length;jj+=a.jets()});SEL.innerHTML=D.m&&k.length?'<b>Ta sélection</b><br>'+k.map(function(n){return '✓ '+E(S[n].o[0])}).join('<br>'):'';G.classList.toggle('sel',kk>0);
+G.appendChild(SEL);function up(){var k=Object.keys(S),kk=0,jj=0;OPI.forEach(function(a){kk+=a.keys().length;jj+=a.jets()});SEL.innerHTML=D.m&&k.length?'<b>Ta sélection</b><br>'+k.map(function(n){return '✓ '+E(S[n].o[0])}).join('<br>'):'';G.classList.toggle('sel',kk>0||XS.some(function(x){return x.any()}));
 if(B&&!B.disabled){B.innerHTML=kk?'Envoyer au MJ ↗<small>'+kk+' choix'+(jj?' · '+jj+' jet'+(jj>1?'s':''):'')+'</small>':'Envoyer au MJ ↗'}hdr()}
 (D.k||[]).forEach(function(k){var l=H('label','ck','<input type="checkbox"> '+E(k));X[k]=l.firstChild;G.appendChild(l)});
 var R=H('textarea');R.placeholder='Ta réplique (facultatif)';R.value=D.r||'';var A=H('textarea');A.placeholder='Action libre (un d20 brut est joint)';var DK='crd:'+(D.h||'')+'|'+(D.q||''),dv0=sg(DK);if(dv0){try{var o0=JSON.parse(dv0);if(!R.value)R.value=o0.r||'';A.value=o0.a||''}catch(e){}}
