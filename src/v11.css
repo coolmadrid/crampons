@@ -150,3 +150,12 @@
 #g .tvsb{padding:12px 10px}
 #g .phg{bottom:27%}#g .phd{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:10px}#g .phq{font-size:14px}#g .phcap{padding:20px 10px 8px}
 }
+
+/* --- avatar d'Aden (aden.png à côté de w.js, ou D.av) --- */
+#g .avi{width:1.25em;height:1.25em;border-radius:50%;object-fit:cover;vertical-align:middle;display:inline-block;background:#06223f}
+#g .av .avi{width:100%;height:100%;border-radius:50%}
+#g .xs .avi{width:22px;height:22px;margin-top:-2px}
+#g .vav .avi{width:100%;height:100%}
+#g .vnsp i .avi{width:100%;height:100%;border-radius:50%}
+#g .phc i .avi{width:1em;height:1em;border-radius:50%;box-shadow:0 10px 16px rgba(0,0,0,.7)}
+#g .cfpod i .avi{width:1em;height:1em;border-radius:50%}
