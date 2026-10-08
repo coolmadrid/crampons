@@ -53,7 +53,7 @@
 #g .fcm{font-size:12.5px;line-height:1.35;color:#e7e9ea;animation:smi .25s ease both;word-wrap:break-word}#g .fcm b{font-weight:700}#g .fcm.adv{color:#b9c2cc}#g .fcm.adv b{opacity:.8}
 #g .fci{padding:6px 10px;border-top:1px solid #2f3336;font-size:11px;color:#636b75}#g .fci span{display:block;padding:5px 10px;border-radius:999px;background:#18202a}
 @media (min-width:760px){#g.chat{padding-right:292px}#g .fchat{position:absolute;right:14px;top:70px;width:260px;height:360px;margin:0;z-index:11;transition:top .25s ease-out}}
-#g.chat .tvtk{margin-right:-292px}
+@media (min-width:760px){#g.chat .tvtk{margin-right:-292px}}
 
 /* --- 3. visual novel --- */
 #g.vnp{height:600px;max-height:94vh}
@@ -128,3 +128,25 @@
 @keyframes cffl{0%,94%,100%{opacity:0}96%{opacity:1}}
 #g .confq.act{background:rgba(226,75,74,.08);box-shadow:inset 3px 0 0 #E24B4A}
 @media (max-width:420px){#g .cfseats{grid-template-columns:repeat(4,1fr)}#g .cfroom{height:250px}#g .cfscr{left:8%;right:8%}}
+
+/* --- mobile : barre d'outils, chat en tiroir, tribune, zone mixte --- */
+@media (max-width:759px){
+#g .tbr{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:2px 0 4px;margin:0 -14px 4px;padding-left:14px;padding-right:14px;scroll-snap-type:x proximity}
+#g .tbr::-webkit-scrollbar{display:none}
+#g .tbr button{scroll-snap-align:start}
+#g .fchat{position:sticky;bottom:0;z-index:13;height:170px;margin:12px -14px -14px;border-radius:14px 14px 0 0;border-bottom:0;box-shadow:0 -10px 30px rgba(0,0,0,.6)}
+#g.tv .fchat{bottom:32px;margin-bottom:0}
+#g .fchat.min{height:40px}
+#g .fchat .fch{cursor:pointer;height:40px;box-sizing:border-box}
+#g .fchat .fch b:after{content:" ▾";color:#8aa0b8;font-weight:400}#g .fchat.min .fch b:after{content:" ▴"}
+#g .fchat .fch b{white-space:nowrap;flex:none}#g .fchat .fch small{min-width:0;overflow:hidden;white-space:nowrap}
+#g .fchat.min .fch small{font-size:0;display:block;flex:1;text-align:right}#g .fchat.min .fch small i{display:none}#g .fchat.min .fch small:before{content:attr(data-last);font-size:12px;display:inline-block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;vertical-align:middle;color:#c7cfd8}
+#g .fchat .fci{display:none}
+#g.chat.sel .sb{bottom:52px}#g.chat.tv.sel .sb{bottom:84px}
+#g:has(.fchat:not(.min)).chat.sel .sb{bottom:182px}#g:has(.fchat:not(.min)).chat.tv.sel .sb{bottom:214px}
+#g .tvcrowd{height:112px}
+#g .tvbug{top:4px}
+#g .cfroom{height:236px}#g .cfseats{grid-template-columns:repeat(4,1fr);bottom:6px}#g .cfpod{top:70px}#g .cfscr{height:60px;top:8px}
+#g .tvsb{padding:12px 10px}
+#g .phg{bottom:27%}#g .phd{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:10px}#g .phq{font-size:14px}#g .phcap{padding:20px 10px 8px}
+}
