@@ -159,3 +159,42 @@
 #g .vnsp i .avi{width:100%;height:100%;border-radius:50%}
 #g .phc i .avi{width:1em;height:1em;border-radius:50%;box-shadow:0 10px 16px rgba(0,0,0,.7)}
 #g .cfpod i .avi{width:1em;height:1em;border-radius:50%}
+
+/* ===== performance : animations en pause hors écran, mode allégé sur mobile ===== */
+#g .amb:not(.on) .ambq i,#g .mog:not(.on) i,#g .xi:not(.on) .xbl,#g .fd:not(.on) .pw .p,#g .tbd:not(.on) .tbc,#g .cj:not(.on) .hlo,#g .tvcrowd:not(.on) *,#g .inf:not(.on) .infs span,#g .lt:not(.on),#g .sbo:not(.on) *{animation-play-state:paused!important}
+#g.hid *{animation-play-state:paused!important}
+#g .xi,#g .une,#g .mb,#g .ph2,#g .lig,#g .cal2,#g .ko,#g .bul,#g .soc,#g .conf,#g .vest,#g .ctr,#g .spo,#g .bk,#g .frz,#g .tf,#g .tbd,#g .cnb,#g .kd,#g .stt,#g .mo,#g .pm,#g .agc,#g .nte,#g .picr{content-visibility:auto;contain-intrinsic-size:auto 320px}
+#g .une,#g .bul,#g .ctr,#g .pol{contain-intrinsic-size:auto 480px}
+/* allégé : pas de grain, pas de flou de fond, moins de boucles */
+#g.lite:after{display:none}
+#g.lite .cgr{animation:none;opacity:.08}
+#g.lite .bgl{animation:none}
+#g.lite .hd,#g.lite .lkn,#g.lite .hmc,#g.lite .hme,#g.lite .tdk,#g.lite .tnb,#g.lite .tcm,#g.lite .vnb,#g.lite .pth,#g.lite .tfl{backdrop-filter:none;-webkit-backdrop-filter:none}
+#g.lite .lkn{background:rgba(40,44,60,.82)}#g.lite .hmc,#g.lite .hme{background:rgba(30,36,56,.78)}#g.lite .tdk{background:rgba(40,44,60,.6)}#g.lite .tnb,#g.lite .tcm{background:rgba(18,18,20,.97)}#g.lite .vnb{background:rgba(6,14,28,.95)}#g.lite .hd{background:rgba(4,20,40,.85)}
+#g.lite .lkg.stk:not(.opn):after{backdrop-filter:none;background:rgba(255,255,255,.08)}
+#g.lite .meteo.rain{background-image:radial-gradient(1.1px 15px at 12px 30px,rgba(200,225,250,.5),transparent 60%),radial-gradient(1px 11px at 40px 70px,rgba(200,225,250,.35),transparent 60%);background-size:110px 120px,160px 150px;animation-duration:.7s}
+#g.lite .meteo.snow{background-image:radial-gradient(2.5px 2.5px at 10% 20%,#fff,transparent 3px),radial-gradient(2px 2px at 40% 60%,#fffd,transparent 3px),radial-gradient(1.5px 1.5px at 70% 30%,#fffb,transparent 3px);background-size:180px 180px,220px 220px,160px 160px}
+#g.lite .meteo.sun:before{animation:none}#g.lite .meteo.sun{animation:none}
+#g.lite .cbg .lt:before{animation:none}#g.lite .cbg .mist{animation:none}#g.lite .cbg .d3,#g.lite .cbg .d4{animation:none}
+#g.lite .hlo{animation:none;background:radial-gradient(circle at var(--mx,70%) var(--my,20%),rgba(255,255,255,.18),transparent 40%)}
+#g.lite .cj.shine:after{display:none}
+#g.lite .lb:not(.rol):after{display:none}
+#g.lite .ob.on{animation:none}
+#g.lite .tvcs i:not(:nth-child(3n)){animation:none}
+#g.lite .tvcs i.fl{animation:none}
+#g.lite .tvcrowd .smk{filter:blur(14px);animation:none}
+#g.lite .cffl{display:none}
+#g.lite .ambq i.lit:nth-child(2n){animation:none;transform:scaleY(.8)}
+#g.lite .ambq i.lit{box-shadow:none}
+#g.lite .ambc b{animation:none;color:#FAC775}
+#g.lite .tkx span{animation-duration:40s}
+#g.lite .d3{animation-duration:1.1s}
+#g.lite .nr.dc:first-letter{text-shadow:none}
+#g.lite .cj,#g.lite .une,#g.lite .mb,#g.lite .ph2,#g.lite .tel,#g.lite .lk,#g.lite .hm,#g.lite .bk{box-shadow:0 8px 20px rgba(0,0,0,.35)}
+#g.lite .xp.me:before{animation:none}
+#g.lite .fd .pw .p{animation:none}
+#g.lite .live{animation-duration:2.6s}
+#g.lite .tvtk,#g.lite .tvbug{will-change:auto}
+#g.lite .tvcs{transform:none;left:0;right:0;height:100%;align-content:flex-end}
+#g.lite .cst .cbg{animation-duration:9s}
+#g.lite .vnsp i{box-shadow:0 14px 30px rgba(0,0,0,.6)}
