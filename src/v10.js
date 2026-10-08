@@ -38,12 +38,32 @@ el.innerHTML='<summary><span>Avant-match</span><b>'+E(a)+' <em>vs</em> '+E(b)+'<
 (function(){var o=BK.CAL;BK.CAL=function(i){try{ss('crcal',JSON.stringify(i[1]||[]))}catch(e){}return o(i)}})();
 FIN.push(function(){var p=preMatch();if(p){var t=G.querySelector('.tbr');if(t)t.after(p);else G.insertBefore(p,G.children[2]||null)}});
 
-/* ---------- 5. mode cinéma ---------- */
-FIN.push(function(){var tb=G.querySelector('.tbr');if(!tb)return;var b=H('button','','🎬');b.title='Mode cinéma';var io=null;
-b.onclick=function(){var on=!G.classList.contains('cine');G.classList.toggle('cine',on);b.classList.toggle('on',on);
-if(on){G.classList.remove('quick','lv');try{io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});[].forEach.call(G.children,function(c,j){if(c.classList.contains('bgl')||c.classList.contains('hd')||c.classList.contains('tbr'))return;c.classList.add('cv');c.classList.remove('in');if(j<4)c.classList.add('in');else io.observe(c)})}catch(e){[].forEach.call(G.children,function(c){c.classList.add('in')})}
-try{G.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){}}
-else{if(io)io.disconnect();[].forEach.call(G.children,function(c){c.classList.remove('cv','in')})}};tb.insertBefore(b,tb.querySelector('button:nth-child(2)')||null)});
+/* ---------- 5. cinématique d'ouverture ---------- */
+function cinema(force){if(G.querySelector('.cin'))return;var rm=false;try{rm=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}if(rm&&!force)return;
+var CHB=null,first='';(D.s||[]).forEach(function(i){if(!CHB&&Array.isArray(i)&&i[0]=='CH')CHB=i;if(!first&&typeof i=='string'&&!/^\s*\*{3}\s*$/.test(i))first=i});
+var sent=(first.match(/^[^.!?…]{10,180}[.!?…]?/)||[first.slice(0,160)])[0].trim(),night=G.classList.contains('th-night'),morn=G.classList.contains('th-morn'),even=G.classList.contains('th-even'),ucl=G.classList.contains('th-ucl'),
+kind=SC||/stade|stadium|pelouse|tribune|kop|vestiaire|échauffement|coup d'envoi/i.test(HH+' '+first)?'stade':/vestiaire/i.test(HH)?'stade':night?'nuit':morn?'matin':'ville',
+ov=H('div','cin'),T=[],ti=null,done=0,stage=H('div','cst'),bar=H('div','cpb','<i></i>'),skip=H('button','csk','Passer ▸');skip.type='button';
+ov.appendChild(stage);ov.appendChild(H('div','cgr'));ov.appendChild(bar);ov.appendChild(skip);
+G.classList.add('cinp');G.insertBefore(ov,G.firstChild);try{G.scrollIntoView({block:'start'})}catch(e){}
+function shot(cls,html,ms){T.push([cls,html,ms])}
+var LIx=LI.filter(function(x){return !/^\d+\s*e\b/.test(x)});
+shot('s1','<div class="ctx">'+LIx.map(function(x,j){return '<span style="animation-delay:'+(300+j*500)+'ms">'+E(x)+'</span>'}).join('')+'</div>',1400+LIx.length*600);
+var bg='<div class="cbg k-'+kind+(ucl?' ucl':'')+(WX?' w-'+WX:'')+'"><i class="sky"></i><i class="far"></i><i class="st1"></i><i class="st2"></i><i class="lt l1"></i><i class="lt l2"></i><i class="lt l3"></i><i class="gnd"></i><i class="mist"></i></div>';
+if(CHB)shot('s2',bg+'<div class="cch">'+(CHB[3]?'<i>'+E(CHB[3])+'</i>':'')+'<b>'+E(CHB[1]||'')+'</b>'+(CHB[2]?'<small>'+E(CHB[2])+'</small>':'')+'</div>',4200);
+else shot('s2',bg+'<div class="cch"><b>'+E(LIx[LIx.length-1]||'')+'</b></div>',3600);
+if(SC){var ca=clb(SC[1]),cb=clb(SC[4]);shot('s3',bg+'<div class="csc"><span class="csa"><i style="background:'+ca[1]+';border-color:'+ca[2]+'"></i><b>'+E(SC[1])+'</b></span><span class="csn">'+SC[2]+'<em>–</em>'+SC[3]+'</span><span class="csa r"><i style="background:'+cb[1]+';border-color:'+cb[2]+'"></i><b>'+E(SC[4])+'</b></span>'+(MI?'<small>'+E(MI)+'</small>':'')+'</div>',3400)}
+if(sent)shot('s4',bg+'<div class="csub"><span></span></div>',Math.min(9000,1800+sent.length*42));
+var total=T.reduce(function(a,t){return a+t[2]},0),k=0,el=null;bar.firstChild.style.transitionDuration=total+'ms';setTimeout(function(){bar.firstChild.style.width='100%'},50);
+function next(){if(done)return;if(el){el.classList.add('out');(function(o){setTimeout(function(){o.remove()},700)})(el)}if(k>=T.length)return fin();var t=T[k++];el=H('div','cshot '+t[0],t[1]);stage.appendChild(el);void el.offsetWidth;el.classList.add('on');
+if(t[0]=='s4'){var sp=el.querySelector('.csub span'),q=0;ti=setInterval(function(){if(done){clearInterval(ti);return}q++;sp.textContent=sent.slice(0,q);if(q>=sent.length)clearInterval(ti)},34)}
+setTimeout(next,t[2])}
+function fin(){if(done)return;done=1;if(ti)clearInterval(ti);ov.classList.add('end');G.classList.remove('cinp');
+[].forEach.call(G.children,function(c,j){if(c===ov||c.classList.contains('bgl'))return;c.classList.add('cv');setTimeout(function(){c.classList.add('in')},150+Math.min(j,16)*110)});
+setTimeout(function(){ov.remove();[].forEach.call(G.children,function(c){c.classList.remove('cv','in')})},1800)}
+skip.onclick=function(e){e.stopPropagation();fin()};ov.onclick=function(){if(k<T.length)next()};setTimeout(next,80)}
+FIN.push(function(){var tb=G.querySelector('.tbr');if(!tb)return;var b=H('button','','🎬');b.title='Cinématique';b.onclick=function(){cinema(true)};tb.insertBefore(b,tb.querySelector('button:nth-child(2)')||null);
+var key='crcin:'+HSH(HH+(D.q||''));var auto=D.cine||(D.s||[]).some(function(i){return Array.isArray(i)&&i[0]=='CH'});if(auto&&sg(key)!='1'){ss(key,'1');setTimeout(function(){cinema(false)},150)}});
 
 /* ---------- 6. conférence de presse ---------- */
 BK.CONF=function(i){var el=H('div','conf'),Q=i[1]||[],A=[];el.dataset.app='Actus';
