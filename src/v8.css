@@ -168,6 +168,7 @@
 #g .sm2.play:not(.me) .vw i{animation-name:vwp,vfl2}@keyframes vfl2{to{background:#0A84FF;opacity:1}}
 #g .sm2.play .vp{background:#fff!important;color:#0A6CFF!important}
 
+#g .vt small{display:block;font:600 9.5px/1.2 system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(235,235,245,.55);font-style:normal;margin-bottom:2px}#g .sm2.me .vt small{color:rgba(255,255,255,.7)}#g .vt span{min-height:1.2em;display:block}
 /* --- 20. mail : en-tête club, pièces jointes --- */
 #g .mff.mcl{background:linear-gradient(90deg,#E24B4A 0 50%,#185FA5 50%) top/100% 5px no-repeat,#F7F9FD}
 #g .mff.mcl b{color:#A32D2D}
