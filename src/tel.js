@@ -31,7 +31,9 @@ function open(fn){stack.push(fn);show(fn,'fw')}
 function back(){stack.pop();show(stack[stack.length-1]||home,'bw')}
 function nav(v,title,right){var n=H('div','tnb','<button class="tbk" type="button">‹</button><b>'+E(title)+'</b>');n.firstChild.onclick=function(e){e.stopPropagation();back()};if(right){var r=H('button','tnr',right[0]);r.type='button';r.onclick=right[1];n.appendChild(r)}v.appendChild(n);return n}
 function empty(v,t){v.appendChild(H('div','tem',E(t)))}
-function outUpd(){OB.hidden=!OUT.length;OB.innerHTML=OUT.length?'<b>'+OUT.length+'</b> action'+(OUT.length>1?'s':'')+' en attente · part'+(OUT.length>1?'ent':'')+' avec « Envoyer au MJ »':'';[].forEach.call(T.querySelectorAll('[data-badge]'),function(e){})}
+function lab(o){return o.k=='sms'?'💬 SMS à '+o.w+' : « '+o.t+' »':o.k=='call'?'📞 Appeler '+o.w:o.k=='vid'?'📹 Visio avec '+o.w:'✉️ Mail à '+o.w+(o.o?' · '+o.o:'')}
+function drop(o){var q=OUT.indexOf(o);if(q>-1)OUT.splice(q,1);if(o.el)o.el.remove();outUpd()}
+function outUpd(){OB.hidden=!OUT.length;OB.innerHTML='';if(!OUT.length)return;OB.appendChild(H('b','',OUT.length+' action'+(OUT.length>1?'s':'')+' en attente · part'+(OUT.length>1?'ent':'')+' avec « Envoyer au MJ » · ✕ pour annuler'));OUT.forEach(function(o){var r=H('div','tor','<span>'+E(lab(o))+'</span>'),x=H('button','tox','✕');x.type='button';x.setAttribute('aria-label','Annuler');x.onclick=function(){drop(o)};r.appendChild(x);OB.appendChild(r)})}
 T.querySelector('.thb').onclick=function(){stack=[];show(TD.lock&&!T.dataset.ul?lock:home,'bw')};
 /* ---- données dérivées ---- */
 function unreadConv(c){return c.m.length&&c.m[c.m.length-1][1]!='Aden'&&!c.read?1:0}
@@ -42,7 +44,8 @@ return L.sort(function(a,b){var ga=gOf(a),gb=gOf(b);return (gb==null?-1:gb)-(ga=
 function gOf(n){var r=pget(n);return typeof r=='number'?r:(typeof r=='string'&&/\d/.test(r)?parseInt(r.replace(/[^\d]/g,''),10):null)}
 function tierOf(n){var r=pget(n),g=gOf(n);return typeof r=='string'&&/[a-z]/i.test(r)?r.replace(/\s*\d+\s*$/,''):(g!=null?tier(g):'')}
 function grpOf(c){var s=[];c.m.forEach(function(i){if(i[1]!='Aden'&&s.indexOf(i[1])<0)s.push(i[1])});return s.length>1}
-function queue(o,lbl){OUT.push(o);outUpd();flash(lbl)}
+function queue(o,lbl){if(o.k=='call'||o.k=='vid'){for(var q=0;q<OUT.length;q++)if(OUT[q].k==o.k&&same(OUT[q].w,o.w)){open(function(v){callScr(v,OUT[q])});return}OUT.push(o);outUpd();open(function(v){callScr(v,o)});return}OUT.push(o);outUpd();flash(lbl)}
+function callScr(v,o){v.classList.add('tcall');var vid=o.k=='vid';v.innerHTML='<span class="tbig">'+AV(o.w)+'</span><b>'+E(o.w)+'</b><small>'+(vid?'📹 Appel vidéo…':'📞 Appel…')+'<br>Il sera passé quand tu enverras au MJ.</small>';var cx=H('div','tcx'),h=H('button','hang','<i>✕</i>Raccrocher'),k=H('button','keep','<i>✓</i>Garder');h.type=k.type='button';h.onclick=function(){drop(o);flash((vid?'Visio avec ':'Appel à ')+o.w+' annulé'+(vid?'e':''));back()};k.onclick=function(){back()};cx.appendChild(h);cx.appendChild(k);v.appendChild(cx)}
 function flash(t){var f=H('div','tfl',E(t));T.appendChild(f);setTimeout(function(){f.classList.add('go')},1400);setTimeout(function(){f.remove()},1900)}
 /* ---- écrans ---- */
 function lock(v){var l=ORIG.LOCK(TD.lock);l.classList.add('in');v.appendChild(l);var u=l.querySelector('.lkf2');u.innerHTML='<button class="tul" type="button">Déverrouiller</button>';u.firstChild.onclick=function(e){e.stopPropagation();T.dataset.ul=1;stack=[];show(home,'up')}}
@@ -63,7 +66,7 @@ if(first&&cut<it.length){var ty=H('div','sm2 typ','<span class="tyd"><i></i><i><
 c.read=1;var cp=H('div','tcm','<input placeholder="Message à '+E(c.t).replace(/"/g,'&quot;')+'"><button type="button" aria-label="Envoyer">↑</button>'),inp=cp.firstChild;
 function send(){var t=inp.value.trim();if(!t)return;var o={k:'sms',w:c.t,t:t};OUT.push(o);outUpd();bd.appendChild(pend(o));inp.value='';sc()}
 cp.lastChild.onclick=send;inp.onkeydown=function(e){if(e.key=='Enter'){e.preventDefault();send()}};v.appendChild(cp);function sc(){SC2.scrollTop=SC2.scrollHeight}setTimeout(sc,30)}
-function pend(o){var e=H('div','sm2 me pend',MD(o.t)+'<em>En attente · touche pour annuler</em>');e.onclick=function(){var q=OUT.indexOf(o);if(q>-1)OUT.splice(q,1);e.remove();outUpd()};return e}
+function pend(o){var e=H('div','sm2 me pend',MD(o.t)+'<em>En attente · touche pour annuler</em>');o.el=e;e.onclick=function(){drop(o)};return e}
 function newMsg(v){nav(v,'Nouveau message');var L=contacts();if(!L.length)return empty(v,'Aucun contact.');L.forEach(function(n){v.appendChild(crow(n,function(){var c=convOf(n);if(!c){c={t:n,m:[],read:1};TD.conv.unshift(c)}stack.pop();open(function(v){thread(v,c)})}))})}
 function crow(n,fn){var w=who(n),tr=tierOf(n),r=H('button','tcr','<span class="tav">'+AV(n)+'</span><span class="tct"><b>'+E(n)+'</b><small>'+E(w?w[1]:'')+'</small></span>'+(tr?'<span class="bd" style="background:'+(PAL[tr]||'#444441')+'">'+E(tr)+'</span>':''));r.type='button';r.onclick=fn;return r}
 APP.contacts=function(v){nav(v,'Contacts');var L=contacts();if(!L.length)return empty(v,'Aucun contact.');L.forEach(function(n){v.appendChild(crow(n,function(){open(function(v){card(v,n)})}))})};
