@@ -32,11 +32,11 @@ if(x.call)return {el:H('div','pcall','📞 Appel manqué'+(x.call>1?' ('+x.call+
 if(x.del)inner='<span class="sdel">⊘ Ce message a été supprimé</span>';
 else if(x.v){var bars='',vm=/(\d+):(\d+)/.exec(String(x.v)),vs=vm?Math.min(8,+vm[1]*60+ +vm[2]):4;for(var b=0;b<28;b++)bars+='<i style="height:'+(4+HSH(String(i[2])+b)%17)+'px;--i:'+b+'"></i>';inner='<span class="vn" style="--d:'+vs+'s"><button class="vp" type="button">▶</button><span class="vw">'+bars+'</span><span class="vd">'+E(x.v)+'</span></span><span class="vt" hidden>'+MD(i[2])+'</span>'}
 else if(x.p)inner='<span class="sph"><span class="sphi">'+E(x.p)+'</span>'+(i[2]?'<span class="sphc">'+MD(i[2])+'</span>':'')+'</span>';
-else inner=MD(i[2]);
+else inner=TR(i[2]);
 var it=H('div','sm2'+(me?' me':'')+(x.p?' img':'')+(x.v?' voc':''),(grp&&!me?'<small class="snm" style="color:'+ncol(i[1])+'">'+E(i[1])+'</small>':'')+inner+(i[3]?'<em>'+E(i[3])+'</em>':'')+(x.re?'<span class="srx">'+E(x.re)+'</span>':''));
 if(x.v){var vb=it.querySelector('.vp'),vt=it.querySelector('.vt'),full=String(i[2]||''),tm=null;vt.innerHTML='<small>Transcription</small><span></span>';var sp=vt.querySelector('span');vb.onclick=function(ev){ev.stopPropagation();var on=vt.hidden;vt.hidden=!on;vb.textContent=on?'❚❚':'▶';it.classList.toggle('play',on);isl(it,on?'🎤 '+(me?'Toi':i[1]):null);if(tm){clearInterval(tm);tm=null}
 if(on){if(!full){sp.textContent='(pas de transcription)';return}var k=0,step=Math.max(1,Math.ceil(full.length/(vs*1000/60)));sp.textContent='';tm=setInterval(function(){k+=step;sp.textContent=full.slice(0,k);if(k>=full.length){clearInterval(tm);tm=null;vb.textContent='▶';it.classList.remove('play');isl(it,null)}},60)}else sp.textContent=full}}
-var r={el:it,me:me,n:i[1],len:String(i[2]||'').length};
+var r={el:it,me:me,n:i[1],len:TRX(i[2]).length};
 if(j==lastMe)r.rc=H('div','prc',E(x.lu?'Lu à '+x.lu:(lastHim>j?'Lu':'Distribué')));
 return r});}
 function buildPhone(o,title,day){var M=o.m,el=o.el,snd=[],lastMe=-1,lastHim=-1,stop=0;
