@@ -74,7 +74,7 @@ var key='crcin:'+HSH(HH+(D.q||''));var auto=!D.mode&&(D.cine||(D.s||[]).some(fun
 
 /* ---------- 6. conférence de presse ---------- */
 BK.CONF=function(i){var el=H('div','conf'),Q=i[1]||[],A=[];el.dataset.app='Actus';
-el.innerHTML='<div class="confw"><span>🦁 OL</span><span>⚡ Kinetik</span><span>🦁 OL</span><span>⚡ Kinetik</span><span>🦁 OL</span><span>⚡ Kinetik</span></div><div class="confh"><b>'+E(i[2]||'Conférence de presse')+'</b><small>'+Q.length+' question'+(Q.length>1?'s':'')+'</small><i class="confm">🎙️</i><i class="confm">🎙️</i><i class="confm">🎙️</i></div>';
+el.innerHTML='<div class="confw">'+[0,1,2].map(function(){return '<span>'+MY.em+' '+E(MY.n)+'</span><span>'+SPO[0]+' '+E(SPO[1])+'</span>'}).join('')+'</div><div class="confh"><b>'+E(i[2]||'Conférence de presse')+'</b><small>'+Q.length+' question'+(Q.length>1?'s':'')+'</small><i class="confm">🎙️</i><i class="confm">🎙️</i><i class="confm">🎙️</i></div>';
 Q.forEach(function(q,k){var w=who(q[0]),sug=q[2]||[],card=H('div','confq'),ans=H('textarea','confa'),tone=null,skip=0;ans.placeholder='Ta réponse';
 card.innerHTML='<div class="confj"><span class="tav">'+(w?w[0]:E(String(q[0]).charAt(0)))+'</span><span class="confn"><b>'+E(q[0])+'</b><small>'+E(w?w[1]:'')+'</small></span><em>Q'+(k+1)+'</em></div><p class="confqt">« '+MD(q[1]||'')+' »</p>';
 if(sug.length){var ch=H('div','confs');sug.forEach(function(s){var c=H('button','wsc',E(s));c.type='button';c.onclick=function(){tone=tone===s?null:s;[].forEach.call(ch.children,function(e){e.classList.toggle('on',e===c&&tone===s)});if(tone&&!ans.value.trim())ans.focus()};ch.appendChild(c)});card.appendChild(ch)}

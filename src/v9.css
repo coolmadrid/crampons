@@ -12,7 +12,8 @@
 #g.lv .xi,#g.lv .mo,#g.lv .stt,#g.lv .amb,#g.lv .frz,#g.lv .tlm,#g.lv .sub,#g.lv .lt,#g.lv .tf,#g.lv .bul,#g.lv .rl.crdx,#g.lv .fd,#g.lv .var,#g.lv .inf{order:-1}
 #g.lv .nr,#g.lv .th,#g.lv .bw,#g.lv .sep{opacity:.82}
 #g.lv .meteo{order:-2}
-#g.lv>*:not(.nt):not(.ck):not(.totop):not(.meteo):not(.bgl):not(.goal){width:100%;box-sizing:border-box}
+#g.lv>*:not(.nt):not(.ck):not(.totop):not(.meteo):not(.bgl):not(.goal):not(.fchat):not(.tvbug):not(.cin):not(.vnov):not(.pho){width:100%;box-sizing:border-box}
+#g.lv .tvbug{align-self:flex-start;order:-3}#g.lv .tvcrowd,#g.lv .tvstd{order:-2}#g.lv .meteo{order:-5}#g.lv .bgl{order:-6}
 
 /* --- 10. temps fort jouable --- */
 #g .tf{margin:14px 0;border-radius:14px;overflow:hidden;background:#0a1324;border:1px solid rgba(226,75,74,.5);box-shadow:0 12px 28px rgba(0,0,0,.4),0 0 0 1px rgba(255,255,255,.04)}

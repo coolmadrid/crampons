@@ -1,7 +1,7 @@
 /* ===== v7.4 : match en direct, temps forts jouables, compétitions, bulletin, contrats, vestiaire ===== */
 APPS.compet=['🏆','Compét','#EF9F27'];
 var ZC={g:'#1D9E75',t:'#2BB5A0',b:'#3D8BFF',o:'#EF9F27',r:'#E24B4A'},
-MYC=function(n){return /\bol\b|lyon|sorensen|\baden\b/i.test(n||'')},
+MYC=function(n){return MY.re.test(n||'')||/sorensen|\baden\b/i.test(n||'')},
 WDL=function(sc){var m=/(\d+)\s*-\s*(\d+)/.exec(String(sc||''));if(!m)return '';return +m[1]>+m[2]?'w':+m[1]<+m[2]?'l':'d'},
 ZON=function(cp,n,z){if(z)return z;var c=NZ(cp||'');
 if(/ligue 1|l1\b/.test(c))return [[1,3,'Ligue des champions','g'],[4,4,'Barrage C1','t'],[5,6,'Europe','b'],[16,16,'Barrage','o'],[17,99,'Relégation','r']];

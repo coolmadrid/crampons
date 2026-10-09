@@ -55,10 +55,10 @@ var hh=(/(\d{1,2})\s?[h:]/.exec(tm)||[0,12])[1]*1,wx=WX=='rain'?['🌧️','Plui
 wdg=function(c,h){return '<div class="hme '+c+'">'+h+'</div>'},
 w1='<div class="hmc"><b>'+E(tm)+'</b><small>'+E(hm[4]||'')+'</small></div>',
 w2=hm[3]?wdg('',MD(hm[3])):SC?wdg('wmt','<small>En direct</small><b>'+E(SC[1])+' '+SC[2]+'-'+SC[3]+' '+E(SC[4])+'</b>'+(MI?'<em>'+E(MI)+'</em>':'')):mt?wdg('wmt','<small>Prochain match</small><b>'+MD(mt[2])+'</b><em>'+E(mt[0]+' · '+(mt[1]||''))+'</em>'):wdg('','🦊 Bonne journée'),
-w3=wdg('wwx','<span class="wxi">'+wx[0]+'</span><b>'+wx[2]+'</b><small>'+wx[1]+' · Lyon</small>'),
+w3=wdg('wwx','<span class="wxi">'+wx[0]+'</span><b>'+wx[2]+'</b><small>'+wx[1]+(MY.city?' · '+E(MY.city):'')+'</small>'),
 w4=N0!=null?wdg('wnt','<small>Note moyenne</small><b>'+F1(N0)+'</b><i><u style="width:'+Math.round(N0*10)+'%"></u></i>'):TD.ag.length?wdg('wag','<small>📅 '+E(TD.ag[0][0])+'</small><b>'+E(TD.ag[0][1]||'')+'</b><em>'+MD(TD.ag[0][2])+'</em>'):wdg('wag','<small>📅 Agenda</small><em>Rien de prévu</em>');
 v.appendChild(H('div','hmw',w1+w2+w3+w4));
-var dock=['Téléphone','Messages','Mail','Agenda'],base=['Contacts','Photos','Banque','Réseaux','Actus','Notes','OL','Kinetik'].concat(Object.keys(APPX).map(function(k){return appOf(k)[1]}));(hm[2]||[]).forEach(function(a){var n=appOf(a[0])[1];if(dock.indexOf(n)<0&&base.indexOf(n)<0)base.push(n)});
+APPS[NZ(MY.n)]=[MY.em,MY.n,MYC2[1]];APPS[NZ(SPO[1])]=[SPO[0],SPO[1],SPO[2]];var dock=['Téléphone','Messages','Mail','Agenda'],base=['Contacts','Photos','Banque','Réseaux','Actus','Notes',MY.n,SPO[1]].concat(Object.keys(APPX).map(function(k){return appOf(k)[1]}));(hm[2]||[]).forEach(function(a){var n=appOf(a[0])[1];if(dock.indexOf(n)<0&&base.indexOf(n)<0)base.push(n)});
 var gr=H('div','hmg');base.forEach(function(n,j){gr.appendChild(icon(n,b,j))});v.appendChild(gr);var dk=H('div','tdk');dock.forEach(function(n,j){dk.appendChild(icon(n,b,j+base.length))});v.appendChild(dk)}
 function icon(n,b,j){var ap=appOf(n),bd=b[NZ(ap[1])],e=H('button','hma','<span class="hmi" style="background:'+ap[2]+'">'+ap[0]+(bd?'<i>'+E(bd)+'</i>':'')+'</span><small>'+E(ap[1])+'</small>');e.type='button';e.style.animationDelay=(60+j*30)+'ms';e.onclick=function(){open(APP[NZ(ap[1])]||function(v){nav(v,ap[1]);empty(v,'Rien de nouveau dans '+ap[1]+'.')})};return e}
 var APP={};for(var ax in APPX)APP[NZ(appOf(ax)[1])]=(function(f){return function(v){f(v,nav,empty,open)}})(APPX[ax]);
