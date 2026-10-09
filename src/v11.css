@@ -161,7 +161,7 @@
 #g .cfpod i .avi{width:1em;height:1em;border-radius:50%}
 
 /* ===== performance : animations en pause hors écran, mode allégé sur mobile ===== */
-#g .amb:not(.on) .ambq i,#g .mog:not(.on) i,#g .xi:not(.on) .xbl,#g .fd:not(.on) .pw .p,#g .tbd:not(.on) .tbc,#g .cj:not(.on) .hlo,#g .tvcrowd:not(.on) *,#g .inf:not(.on) .infs span,#g .lt:not(.on),#g .sbo:not(.on) *{animation-play-state:paused!important}
+#g .amb:not(.vis) .ambq i,#g .mog:not(.vis) i,#g .xi:not(.vis) .xbl,#g .fd:not(.vis) .pw .p,#g .tbd:not(.vis) .tbc,#g .cj:not(.vis) .hlo,#g .tvcrowd:not(.vis) *,#g .inf:not(.vis) .infs span,#g .lt:not(.vis),#g .sbo:not(.vis) *{animation-play-state:paused!important}
 #g.hid *{animation-play-state:paused!important}
 #g .xi,#g .une,#g .mb,#g .ph2,#g .lig,#g .cal2,#g .ko,#g .bul,#g .soc,#g .conf,#g .vest,#g .ctr,#g .spo,#g .bk,#g .frz,#g .tf,#g .tbd,#g .cnb,#g .kd,#g .stt,#g .mo,#g .pm,#g .agc,#g .nte,#g .picr{content-visibility:auto;contain-intrinsic-size:auto 320px}
 #g .une,#g .bul,#g .ctr,#g .pol{contain-intrinsic-size:auto 480px}
