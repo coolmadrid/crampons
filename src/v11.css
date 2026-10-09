@@ -210,3 +210,25 @@
 #g .rcx{margin:0;padding:0;width:24px;height:24px;border-radius:50%;font-size:12px;text-align:center;background:#06223f;border-color:var(--bd);color:#F7C1C1}
 #g .rca{display:flex;gap:8px;padding:10px;align-items:center}#g .rca .sb{flex:1;margin:0;position:static}#g .rcn{margin:0;font-size:13px;padding:10px 14px;border-radius:10px;background:#06223f}
 #g.light .rcp2{background:#fff}#g.light .rcr{color:#0E1A2B}#g.light .rch{color:#fff}
+
+/* --- 5. version longue --- */
+#g .lbt{display:block;margin:6px auto 10px;font:700 14px/1 "Barlow Condensed",sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:10px 18px;border-radius:999px;background:#06223f;border-color:var(--mt);color:#E6F1FB}
+#g .long:empty{display:none}#g .long{border-left:2px solid rgba(133,183,235,.35);padding-left:10px;margin:4px 0 8px;animation:gin .5s both}
+/* --- 11. scène facultative --- */
+#g .optc{margin:12px 0;border:1px dashed var(--mt);border-radius:14px;background:rgba(4,20,40,.5);overflow:hidden}
+#g .optc summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:10px 12px}#g .optc summary::-webkit-details-marker{display:none}
+#g .optc summary i{font-style:normal;font-size:22px;width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:#06223f;border:1px solid var(--bd)}
+#g .optc summary b{font:700 16px/1.2 "Barlow Condensed",sans-serif;letter-spacing:.04em;text-transform:uppercase;color:var(--ti)}
+#g .optc summary small{margin-left:auto;font-size:11px;color:var(--mt);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+#g .optc[open]{border-style:solid;border-color:var(--bd)}#g .optc[open] summary small{content:"";color:#9FE1CB}
+#g .optb{padding:0 14px 12px;font:16px/1.65 "Source Serif 4",Georgia,serif;color:#EEF5FC;animation:gin .4s both}#g .optb p{margin:8px 0}
+/* --- 12. dé du MJ --- */
+#g .rl.mj{border-style:dashed}#g .rl.mj .dz{background:#444441;animation:none}#g .mjv{color:var(--t2)}
+#g .rl.mj.c,#g .rl.mj.b,#g .rl.mj.r,#g .rl.mj.j,#g .rl.mj.e,#g .rl.mj.f{border-style:solid}
+/* --- 16. scène miroir --- */
+#g .mir{display:flex;gap:12px;align-items:flex-start;margin:12px 0;padding:10px 12px;border-radius:12px;background:rgba(60,48,30,.35);border:1px solid rgba(201,167,100,.4)}
+#g .mirp{position:relative;flex:none;width:86px;height:96px;background:#fdfcf7;padding:5px 5px 14px;box-shadow:0 6px 16px rgba(0,0,0,.45);transform:rotate(-3deg)}
+#g .mirp span{display:grid;place-items:center;width:100%;height:100%;font-size:36px;background:linear-gradient(160deg,#6b5a3a,#3d3221);filter:sepia(.9) contrast(.9)}
+#g .mirp i{position:absolute;inset:0;background:radial-gradient(circle,rgba(0,0,0,.25) 1px,transparent 1.3px) 0 0/3px 3px;opacity:.5;pointer-events:none}
+#g .mirt{min-width:0}#g .mirt small{display:block;font:700 11px/1.2 "Barlow Condensed",sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#C9A764}
+#g .mirt p{margin:4px 0 0;font:italic 15px/1.5 "Source Serif 4",Georgia,serif;color:#EADBC0}

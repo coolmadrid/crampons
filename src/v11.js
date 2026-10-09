@@ -99,6 +99,7 @@ setTimeout(function(){focus(0)},400);return el}})();
 FIN.push(function(){var M=String(D.mode||'').toLowerCase();if(!M)return;var key='crmode:'+HSH(HH+(D.q||'')+M),first=sg(key)!='1';ss(key,'1');
 var L=M.split(/[,+\s]+/).filter(Boolean),has=function(k){return L.indexOf(k)>-1},btn=function(re){var tb=G.querySelector('.tbr');return tb?[].slice.call(tb.children).filter(function(b){return re.test(b.textContent)})[0]:null};
 if(has('none')||has('aucun')){ss('crcin:'+HSH(HH+(D.q||'')),'1');return}
+if(has('spec')||has('spectateur'))return;
 if(has('tv')||has('tele')||has('télé')){var b=btn(/Télé/);if(b&&!G.classList.contains('tv'))b.click()}
 if(has('chat')){var c=btn(/Chat/);if(c&&!G.classList.contains('chat'))c.click()}
 if(has('lv')||has('match')){var m=btn(/^⚽/);if(m&&!G.classList.contains('lv'))m.click()}
@@ -106,3 +107,21 @@ if(!first)return;
 var after=function(){if(has('vn')||has('novel')||has('roman'))setTimeout(vnOpen,200)};
 if(has('cine')||has('cinema')||has('cinématique')||has('cinematique')){ss('crcin:'+HSH(HH+(D.q||'')),'1');setTimeout(function(){cinema(true);var w=setInterval(function(){if(!G.querySelector('.cin')){clearInterval(w);after()}},300)},150)}
 else{ss('crcin:'+HSH(HH+(D.q||'')),'1');after()}});
+
+/* ---------- 11. scène facultative ---------- */
+BK.OPT=function(i){var el=H('details','optc'),op=0;el.innerHTML='<summary><i>'+E(i[3]||'🚪')+'</i><b>'+E(i[1]||'Scène facultative')+'</b><small>facultatif · toucher pour ouvrir</small></summary><div class="optb">'+PARA(i[2])+'</div>';
+el.ontoggle=function(){if(el.open&&!op){op=1;el.classList.add('seen')}};
+XS.push({any:function(){return !!op},msg:function(){return op?['> Scène facultative ouverte : '+(i[1]||'')]:[]}});return el};
+
+/* ---------- 12. dé du MJ visible ---------- */
+BK.D20=function(i){var n=i[1]||'MJ',v=+i[2]||0,w=who(n),lab=i[3]||'',el=H('div','rl mj'),c=v==20?'c':v==1?'f':v>=15?'b':v>=10?'r':v>=6?'j':'e';
+el.innerHTML='<span class="dz">?</span><span class="rx"><b class="rc">Dé de '+E(n)+(w?' '+w[0]:'')+'</b>'+(lab?E(lab)+' · ':'')+'<span class="mjv">le MJ lance…</span></span>';
+VIEW(el,function(){var dz=el.querySelector('.dz'),k=0,t=setInterval(function(){dz.textContent=d20();if(++k>14){clearInterval(t);dz.textContent=v;el.classList.add(c);el.querySelector('.mjv').textContent='d20 ('+v+')'+(v==20?' · coup d\'éclat':v==1?' · fiasco':'');if(v==20||v==1)fx(el,{d:v})}},60)});return el};
+
+/* ---------- 16. scène miroir ---------- */
+BK.MIR=function(i){var el=H('div','mir');el.innerHTML='<div class="mirp"><span>'+E(i[3]||'📷')+'</span><i></i></div><div class="mirt"><small>Il y a… '+E(i[1]||'')+'</small>'+(i[2]?'<p>'+MD(i[2])+'</p>':'')+'</div>';return el};
+
+/* ---------- 15. mode spectateur ---------- */
+FIN.push(function(){var M=String(D.mode||'').toLowerCase();if(!/\bspec\b|spectateur/.test(M))return;var key='crspec:'+HSH(HH+(D.q||''));if(sg(key)=='1')return;ss(key,'1');ss('crcin:'+HSH(HH+(D.q||'')),'1');
+var S=vnSteps(),hasD=S.some(function(s){return s.t=='d'||s.t=='me'});
+setTimeout(function(){cinema(true);var w=setInterval(function(){if(G.querySelector('.cin'))return;clearInterval(w);if(hasD)setTimeout(vnOpen,200);var w2=setInterval(function(){if(G.querySelector('.vnov'))return;clearInterval(w2);if(SC&&!G.classList.contains('tv')){var b=[].slice.call(G.querySelector('.tbr').children).filter(function(x){return /Télé/.test(x.textContent)})[0];if(b)b.click()}var t=G.querySelector('.q')||G.querySelector('.op');if(t)try{t.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){}},300)},300)},150)});
