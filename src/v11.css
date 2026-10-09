@@ -1,7 +1,7 @@
 /* ===== v7.6 : régie télé, visual novel, chat, photo, zone mixte ===== */
 
 /* --- 1. régie télé --- */
-#g .tbr button{flex:none;white-space:nowrap}
+#g .tbr{flex-wrap:wrap}#g .tbr button{flex:none;white-space:nowrap}
 #g{overflow:clip}#g.cinp{overflow:clip}
 #g.tv .hd{display:none}
 #g.tv{background-color:#06090f}
