@@ -39,12 +39,12 @@ arret:['LOPES 🧤','quel arrêt','sauvé','ouf ouf ouf'],var:['le VAR… on att
 adv:['vous allez perdre','{adv} on est là','arbitre maison','ça sent le but pour nous','mdr '+MY.n.toLowerCase(),'{adv} 💪']},
 el=H('div','fchat'),list=H('div','fcl'),cnt=1800+Math.floor(r()*900);
 el.innerHTML='<div class="fch"><b>💬 Chat des '+E(MY.fans)+'</b><small><i></i>'+fmt(cnt)+' en direct</small></div>';el.appendChild(list);el.appendChild(H('div','fci','<span>Le chat est en lecture seule</span>'));el.querySelector('.fch').onclick=function(){if(innerWidth<760){el.classList.toggle('min');if(!el.classList.contains('min'))list.scrollTop=list.scrollHeight}};
-var EV=sceneEvents(),q=0,idle=0,tot=0;
+var EV=window.__crlive?[]:sceneEvents(),q=0,idle=0,tot=0;
 function add(t,isAdv){if(tot>90){list.firstChild&&list.firstChild.remove()}var nm=isAdv?pick(r,PA):pick(r,PS),m=H('div','fcm'+(isAdv?' adv':''),'<b style="color:'+ncol(nm)+'">'+E(nm)+'</b> '+E(t));list.appendChild(m);tot++;list.scrollTop=list.scrollHeight;var s=el.querySelector('.fch small');cnt+=Math.floor(r()*7)-2;s.innerHTML='<i></i>'+fmt(cnt)+' en direct';s.dataset.last=nm+' : '+t}
 function burst(e){var n=e.t=='but'?6:e.t=='rouge'?5:e.t=='tf'?4:3,k=0,arr=T[e.t]||T.ev;(function nx(){if(k++>=n)return;var s=pick(r,arr).replace('{x}',e.x||'').replace('{adv}',adv);add(s,r()<.18);setTimeout(nx,180+r()*500)})();if(e.t=='but'){el.classList.add('hot');setTimeout(function(){el.classList.remove('hot')},2500)}}
 for(var i0=0;i0<5;i0++)add(pick(r,T.idle));
 function tick(){if(!el.isConnected){clearInterval(CHTI);CHTI=null;return}if(q<EV.length&&(idle>=2||EV[q].t=='but')){burst(EV[q++]);idle=0}else{add(r()<.15?pick(r,T.adv).replace('{adv}',adv):pick(r,T.idle),false);idle++}}
-el._start=function(){if(!CHTI)CHTI=setInterval(tick,2200+r()*1500)};CHT=el;return el}
+el._start=function(){if(!CHTI)CHTI=setInterval(tick,2200+r()*1500)};el._burst=burst;CHT=el;return el}
 function chatOn(on){if(!SC)return;var c=chatBuild(),mob=innerWidth<760;if(on){if(mob){G.appendChild(c);c.classList.add('min');var tk=G.querySelector('.tvtk');if(tk)G.appendChild(tk)}else if(!c.parentNode){var a=G.querySelector('.tvstd')||G.querySelector('.tvcrowd')||G.querySelector('.tbr');a.after(c)}c._start();G.classList.add('chat');place()}else{c.remove();G.classList.remove('chat')}}
 function place(){var c=CHT;if(!c||!c.parentNode)return;if(innerWidth<760){c.style.top='';return}var gt=G.getBoundingClientRect().top+scrollY,y=scrollY-gt+70,mx=G.offsetHeight-380;c.style.top=Math.max(70,Math.min(mx,y))+'px'}
 addEventListener('scroll',function(){if(G.classList.contains('chat'))place()},{passive:true});addEventListener('resize',function(){if(G.classList.contains('chat'))place()});
