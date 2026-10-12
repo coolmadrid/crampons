@@ -28,6 +28,7 @@ function mkPhone(title,day){var o={m:[],el:H('div','ph2')};o.el.dataset.app='Mes
 BK.SMS=function(i){PH2=mkPhone(i[1],i[2]);return PH2.el};
 BK.S=function(i){var nw=!PH2;if(nw)PH2=mkPhone(null,null);PH2.m.push(i);return nw?PH2.el:null};
 function smsItems(M,grp,lastMe,lastHim){return M.map(function(i,j){var me=i[1]=='Aden',x=i[4]||{},inner;
+if(x.sep)return {el:H('div','pdy msep'+(x.nw?' nw':''),E(i[2])),me:1,sys:1};
 if(x.call)return {el:H('div','pcall','📞 Appel manqué'+(x.call>1?' ('+x.call+')':'')+(i[3]?' · '+E(i[3]):'')+(i[2]?'<br><small>'+E(i[2])+'</small>':'')),me:me,sys:1};
 if(x.del)inner='<span class="sdel">⊘ Ce message a été supprimé</span>';
 else if(x.v){var bars='',vm=/(\d+):(\d+)/.exec(String(x.v)),vs=vm?Math.min(8,+vm[1]*60+ +vm[2]):4;for(var b=0;b<28;b++)bars+='<i style="height:'+(4+HSH(String(i[2])+b)%17)+'px;--i:'+b+'"></i>';inner='<span class="vn" style="--d:'+vs+'s"><button class="vp" type="button">▶</button><span class="vw">'+bars+'</span><span class="vd">'+E(x.v)+'</span></span><span class="vt" hidden>'+MD(i[2])+'</span>'}

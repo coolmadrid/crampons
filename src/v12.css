@@ -50,3 +50,9 @@
 #g .credz{margin-top:30px}#g .credz b{font:italic 17px/1.4 "Source Serif 4",Georgia,serif}
 #g .credf{margin-top:40px;font:900 44px/1 "Barlow Condensed",sans-serif;letter-spacing:.3em;color:#E24B4A}
 #g .cred .csk{bottom:14px}
+/* mémoire du portable */
+#g .msep{margin:10px auto 6px;opacity:.75}#g .msep.nw{opacity:1;color:#FAC775;font-weight:600}
+#g .memko{margin:0 auto 8px;max-width:360px;padding:8px 12px;border-radius:12px;background:rgba(226,75,74,.12);border:1px solid rgba(226,75,74,.35);color:#F7C1C1;font-size:12.5px;line-height:1.35;text-align:center}
+#g .trg .rgs{margin:4px 12px 10px;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.06)}#g .trg .rgs b{display:block;color:#fff;font-size:15px}#g .trg .rgs small{display:block;margin-top:4px;color:#8E8E93;font-size:12px;line-height:1.4}
+#g .trg .rgb{display:flex;align-items:center;gap:12px;width:calc(100% - 24px);margin:0 12px 8px;padding:10px 12px;border-radius:14px;border:0;background:rgba(255,255,255,.06);color:#fff;text-align:left;font:inherit;cursor:pointer}#g .trg .rgb i{font-style:normal;font-size:20px;width:32px;height:32px;display:grid;place-items:center;border-radius:9px;background:#2C2C2E}#g .trg .rgb b{display:block;font-size:14px}#g .trg .rgb small{display:block;color:#8E8E93;font-size:11.5px}#g .trg .rgb.dng b{color:#FF6961}#g .trg .rgb:disabled{opacity:.6}
+#g .trg .rgx{margin:0 12px 10px;display:flex;flex-direction:column;gap:6px}#g .trg .rgx textarea{width:100%;box-sizing:border-box;min-height:80px;border-radius:10px;border:1px solid #3A3A3C;background:#1C1C1E;color:#EEF5FC;font:12px/1.35 ui-monospace,monospace;padding:8px;word-break:break-all}#g .trg .rgx small{color:#9FE1CB;font-size:12px}
