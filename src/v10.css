@@ -33,7 +33,7 @@
 #g.light .pm{background:#fff}#g.light .pms b{color:#0E1A2B}#g.light .pml,#g.light .pmp{background:#F3F6FA}#g.light .pmp b,#g.light .pml b{color:#0E1A2B}
 
 /* --- 5. cinématique d'ouverture --- */
-#g.cinp{height:560px;max-height:92vh;overflow:hidden}
+#g.cinp{height:560px;min-height:560px;overflow:hidden}
 #g.cinp>*:not(.cin):not(.vnov):not(.pho):not(.bgl):not(.cred):not(.mtg){visibility:hidden}
 #g .cin{position:absolute;inset:0;z-index:40;background:#000;overflow:hidden;animation:none;transition:opacity 1.2s ease}
 #g .cin.end{opacity:0;pointer-events:none}

@@ -56,7 +56,7 @@
 @media (min-width:760px){#g.chat .tvtk{margin-right:-292px}}
 
 /* --- 3. visual novel --- */
-#g.vnp{height:600px;max-height:94vh}
+#g.vnp{height:600px;min-height:600px}
 #g .vnov{position:absolute;inset:0;z-index:40;background:#000;overflow:hidden;animation:none;transition:opacity .7s ease;cursor:pointer;outline:0}
 #g .vnov.end{opacity:0;pointer-events:none}
 #g .vnov .cbg{animation:none;transform:scale(1.02)}
@@ -104,7 +104,7 @@
 #g .phth{position:relative;margin:0;padding:0;aspect-ratio:1;border:0;border-radius:4px;background:var(--pg);display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
 #g .phth span{font-size:22px;letter-spacing:-6px}#g .phth small{position:absolute;left:0;right:0;bottom:0;font-size:9px;color:#fff;background:rgba(0,0,0,.6);padding:2px 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #g .phth i{position:absolute;right:2px;top:2px;width:16px;height:16px;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;font-size:9px;font-style:normal;display:grid;place-items:center}
-#g.cinp:has(.pho){height:min(720px,94vh)}
+#g.cinp:has(.pho){height:680px}
 @media (max-width:700px){#g .pho{grid-template-columns:1fr}}
 
 /* --- 7bis. zone mixte vivante --- */
