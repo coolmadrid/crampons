@@ -26,7 +26,7 @@ function agList(el,L){var cur=null;if(!L.length){el.appendChild(H('div','tem','R
 function buildTel(){var hm=TD.home||['HOME'],tm=hm[1]||(TD.lock&&TD.lock[1])||'9:41',T=TEL,stack=[];
 T.innerHTML='<div class="tsb"><b>'+E(tm)+'</b><span class="tisl"></span><span class="tic">5G <i class="tbat"><u></u></i></span></div><div class="tsc"></div><button class="thb" type="button" aria-label="Accueil"><i></i></button>';
 T.dataset.app='Portable';var SC2=T.querySelector('.tsc'),OB=H('div','tout');OB.hidden=1;T.parentNode.insertBefore(OB,T.nextSibling);
-function show(fn,dir){var v=H('div','tvw '+(dir||'fw'));isl(T,null);fn(v);SC2.innerHTML='';SC2.appendChild(v);SC2.scrollTop=0;T.classList.toggle('onhome',fn===home);T.classList.toggle('onlock',fn===lock)}
+function flow(){try{return getComputedStyle(SC2).position!='absolute'}catch(e){return false}}function show(fn,dir){var v=H('div','tvw '+(dir||'fw'));isl(T,null);fn(v);SC2.innerHTML='';SC2.appendChild(v);SC2.scrollTop=0;if(flow()&&T.getBoundingClientRect().top<0)try{T.scrollIntoView({block:'start'})}catch(e){}T.classList.toggle('onhome',fn===home);T.classList.toggle('onlock',fn===lock)}
 function open(fn){stack.push(fn);show(fn,'fw')}
 function back(){stack.pop();show(stack[stack.length-1]||home,'bw')}
 function nav(v,title,right){var n=H('div','tnb','<button class="tbk" type="button">‹</button><b>'+E(title)+'</b>');n.firstChild.onclick=function(e){e.stopPropagation();back()};if(right){var r=H('button','tnr',right[0]);r.type='button';r.onclick=right[1];n.appendChild(r)}v.appendChild(n);return n}
