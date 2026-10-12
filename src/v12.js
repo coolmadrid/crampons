@@ -13,7 +13,7 @@ startM=Math.max(0,Math.min.apply(null,items.map(function(i){return i.m}).concat(
 var goalM=D.but?endM:null;
 /* score qui évolue : buts de la scène attribués à un camp, le reste déjà marqué au départ */
 var isG=function(x){return /\bbut\b|⚽|marque|égalis|egalis|penalty transformé|csc/i.test(x)&&!/refus|annul|hors-jeu|poteau|arrêt|manqu/i.test(x)},A0=SC?+SC[2]:0,B0=SC?+SC[3]:0,
-myS=SC&&(NZ(SC[4])==NZ(MY.n)||clubOf(SC[4])===clubOf(MY.n))?'b':'a',sideOf=function(x){var t=NZ(x),a=SC?NZ(SC[1]):'',b=SC?NZ(SC[4]):'';if(b&&t.indexOf(b)>-1&&t.indexOf(a)<0)return 'b';if(a&&t.indexOf(a)>-1&&t.indexOf(b)<0)return 'a';if(/aden|sorensen/i.test(x))return myS;return null},
+myS=SC&&(NZ(SC[4])==NZ(MY.n)||clubOf(SC[4])===clubOf(MY.n)||(/\b(france|bleus|espoirs)\b/i.test(SC[4])&&!/\b(france|bleus|espoirs)\b/i.test(SC[1])))?'b':'a',sideOf=function(x){var t=NZ(x),a=SC?NZ(SC[1]):'',b=SC?NZ(SC[4]):'';if(b&&t.indexOf(b)>-1&&t.indexOf(a)<0)return 'b';if(a&&t.indexOf(a)>-1&&t.indexOf(b)<0)return 'a';if(/aden|sorensen/i.test(x))return myS;return null},
 GL=items.filter(function(i){return i.t!='card'&&i.t!='tf'&&isG(i.x)});if(D.but)GL.push({m:endM,x:typeof D.but=='string'?D.but:'',fake:1});
 var na=0,nb=0;GL.forEach(function(g){g.sd=sideOf(g.x);if(g.sd=='a')na++;if(g.sd=='b')nb++});GL.forEach(function(g){if(!g.sd){if(na<A0){g.sd='a';na++}else if(nb<B0){g.sd='b';nb++}else g.sd=myS}});
 var cA=Math.max(0,A0-GL.filter(function(g){return g.sd=='a'}).length),cB=Math.max(0,B0-GL.filter(function(g){return g.sd=='b'}).length);GL.forEach(function(g){if(g.el)g.el._gl=g});
