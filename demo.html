@@ -1,0 +1,73 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>demo</title>
+<style>body{margin:0;padding:12px;background:#111;font-family:sans-serif}</style></head><body>
+<div id=g></div>
+<script>
+window.sendPrompt=function(s){console.log('PROMPT',s)};
+var Q=location.search;
+window.D={
+h:(Q.indexOf('match')>-1?"OL 1 - 0 Lens · 67e · ":Q.indexOf('pre')>-1?"OL vs Lens · ":"")+"Samedi 12 mars 2027 · 20h45 · Groupama Stadium",
+q:"Qu'est-ce que tu fais ?",
+n:"6,5",d:2,
+P:{"Théo Garnier":72,"Jaouen":40,"Mme Benali":85,"Royer":58},
+s:[
+"Le couloir sent le camphre et la pelouse coupée. Vasseur t'attend, bras croisés, pendant que le kop chauffe déjà au-dessus de vos têtes. Il pleut sur Décines depuis midi. « Tu joues titulaire. Pas de cadeau. »",
+["~","Six mois que j'attends ça."],
+["Royer","Tu joues simple. Tu me regardes. Tu respires."],
+["+","Confiance +2"],
+["+","Royer −3"],
+["@","Philippe Garnier","Avant le match","Je serai en tribune. Montre-leur. **Papa**","19:02",{t:"Signé",a:[["Contrat_image_2027.pdf","Article 1 : le joueur accorde…"],["photo_tribune.jpg",""]]}],
+["@","Clémence Morel","Plan média d'après-match","Zone mixte à 23h, 3 questions max.","18:40",{lu:1}],
+["SMS","Théo","sam. 12"],
+["S","Théo","T'es prêt frérot ?","19:10"],
+["S","Aden","Jamais été aussi prêt.","19:11",{re:"🔥"}],
+["S","Théo","Frérot écoute, tu rentres sur la pelouse tu regardes personne, tu joues ton jeu. Papa est là, il dira rien mais il est là. Allez.","19:12",{v:"0:08"}],
+["C","Aden Rodrigues","MOC","OL",[6,5,7,7,2,4,6,5],3,340,500,"Vision · Sang-froid"],
+["XI","OL","4-2-3-1",["1 Lopes","2 Mata","4 Caleta-Car","5 Niakhaté","3 Tagliafico","6 Caqueret","8 Matic (c)","7 Cherki","10 Aden","9 Lacazette","11 Fofana"]],
+["J","Pression du match",78,100],
+["#","@olympiquelyonnais","Première titularisation pour Aden Rodrigues (18 ans) ! 🦁",{l:"12,4k",r:"2 310",v:1,h:"2 h"}],
+["#","Instagram · @aden.rdg","Premier match au Groupama. Merci la famille. 🦊",{l:"48 212",p:"🏟️",c:[["@theo_g","frérooo 🔥"],["@ol_fan69","futur ballon d'or"]]}],
+["#","TikTok · @aden.rdg","POV : ta première titu en L1 😮‍💨",{l:"210k",r:"3 400",p:"🦊",v:1}],
+["UNE","L'Équipe","Le gamin de Vénissieux","Le centre de formation lyonnais tient son nouveau bijou.","🦊",[["Aden","6,5"],["Lacazette","7"]],"13 mars","Aden Rodrigues, hier soir à Décines."],
+["UNE","So Foot","Aden, le gosse qui ne tremble pas","Portrait d'un milieu qui joue comme on parle.","🎙️",[],"avril"],
+["INFO","Aden Rodrigues titulaire pour la première fois en Ligue 1","Flash"],
+["TB","Lacazette","Aden","Vasseur"],
+["AMB",80,"Qui ne saute pas n'est pas Lyonnais"],
+["K","Minute par minute",[["12'","Première touche propre"],["34'","Frappe contrée"],["45+2'","But de Lacazette"],["67'","Carton jaune pour Matic"],["78'","Changement : Morel entre"]]],
+["=","Carton jaune pour Matic","j"],
+["=","Carton rouge pour Sylla","e"],
+["SUB","Morel","Matic","78'"],
+["SUB","+4"],
+["MO",62,"Domination"],
+["ST",[["Possession",58,42],["Tirs",11,6],["Passes",420,312]]],
+["T",[[50,55,'a','Aden','h',30,70],[70,30,'a','Lacazette','g'],[40,40,'b','Sylla'],[88,50,'b','Samba','b']],[[20,80,30,70,50,55],[50,55,60,45,70,30],[70,30,85,38,96,47]],1,"BUT"],
+["L","Temps forts",[["45'","⚽","But de Lacazette"],["67'","🟨","Jaune pour Matic"]]],
+["ACH","Première titularisation","Un match de Ligue 1 dans le onze de départ","🏅"],
+["BANK","Mars 2027",18450,[["Salaire OL",4200,"💶"],["Loyer",-980,"🏠"],["Adidas",1500,"👟"],["Resto avec Théo",-64,"🍝"],["Essence",-70,"⛽"]],"Prime de match versée"],
+["AG",[["Dim. 13","11h","Décrassage","🏃"],["Mar. 15","20h45","Match · OL vs Lens","⚽"],["Mer. 16","9h","Cours Sciences Po","🎓"]]],
+["PH",[["Vestiaire d'avant-match","🧦","12 mars"],["Le kop","🔴","12 mars"],["Avec Théo","🤝","11 mars"]]],
+["NO","À faire","Appeler Farmor\nRendre le mémoire\nAcheter du riz","12 mars"],
+["NB","Carnet",["Jouer simple","~Chercher Cherki","*Respirer"],"12 mars"],
+["Q","On ne joue pas pour être aimé.","Royer"],
+["CONF",[["Camille","Aden, première titularisation et un but : vous attendiez-vous à ça ?",["Rester humble","Remercier le groupe","Assumer l'ambition"]],["Lenoir","Le coach dit que vous jouez trop simple. Vous êtes d'accord ?",["Botter en touche","Défendre le coach","Répondre franchement"]],["Journaliste turc","Galatasaray vous suit. Un mot pour Istanbul ?"]],"Zone mixte · après OL - Lens"],
+["TF","67'","Cherki décale sur ta droite, Sylla est en retard. Le but est à vingt mètres, Lacazette appelle au second poteau.",[["Frapper","Enroulé petit filet",[3,1],15],["Servir Lacazette","Passe au second poteau",[2,2],12],["Fixer et repiquer","Dribble vers l'axe",[3,0,1],"Sylla +5",1]],"Temps fort"],
+["BUL","OL",[["Lopes",6],["Mata",5.5],["Caleta-Car",6],["Niakhaté",7],["Tagliafico",6],["Caqueret",6.5],["Matic",5],["Cherki",7.5],["Aden",7],["Lacazette",8],["Fofana",6]],"Lacazette","Lens",[["Samba",6],["Gradit",5],["Danso",6.5],["Medina",5.5],["Frankowski",6],["Sylla",4],["Thomasson",6],["Sotoca",6.5],["Fulgini",5.5],["Wahi",6],["Saïd",5]]],
+["LIG","Ligue 1",[["PSG",48,20,"+34"],["Monaco",41,20,"+18"],["OL",40,20,"+15","VVNVD"],["Marseille",38,20,"+12"],["Lille",35,20,"+8"],["Lens",33,20,"+5"],["Nice",31,20,"+2"],["Rennes",29,20,"0"],["Brest",27,20,"-2"],["Strasbourg",26,20,"-4"],["Toulouse",24,20,"-6"],["Nantes",22,20,"-8"],["Reims",21,20,"-9"],["Auxerre",20,20,"-10"],["Le Havre",18,20,"-14"],["Angers",17,20,"-16"],["Montpellier",14,20,"-22"],["Saint-Étienne",12,20,"-25"]]],
+["LIG","Ligue des champions · Groupe D",[["Porto",7,4,"+4"],["OL",7,4,"+3","VNDV"],["Leverkusen",6,4,"+1"],["Galatasaray",1,4,"-8"]]],
+["CAL",[["Sam. 5","Lille","ext","1-1","L1"],["Mar. 8","Porto","dom","2-1","LDC"],["Sam. 12","Lens","dom","","L1"],["Mer. 16","Leverkusen","ext","","LDC"],["Dim. 20","Marseille","dom","","L1"]],"Prochains matchs"],
+["KO","Ligue des champions",[["Huitièmes",[["OL","Atlético","2-1"],["Arsenal","PSV","3-0"],["Porto","Villa","1-1 (4-3 tab)"],["Leverkusen","PSG","1-2"]]],["Quarts",[["OL","Arsenal",""],["Porto","PSG",""]]],["Demies",[["?","?",""]]]]],
+["CTR","OL","Juin 2030",45000,[["Prolongation","Trois saisons supplémentaires, option d'une quatrième."],["Prime de sélection","+15 000 € par sélection en équipe de France A."],["Clause libératoire","Fixée à 60 M€ à compter de 2028."]],{t:"Prolongation de contrat",agent:"Aïssatou Konaté",lib:"60 M€",prime:"300 000 €"}],
+["SPO","Kinetik",180000,"2 ans","Chaussures et gamme signature, deux tournages par an.","⚡"],
+["VEST",[["Lacazette","confiant","On va les manger."],["Cherki","chaud"],["Matic","tendu","Trop de cartons."],["Lopes","calme"],["Morel","déçu","J'aurais dû commencer."],["Aden","motivé","Première."],["Fofana","blessé"],["Caqueret","concentré"]],"Vestiaire · avant-match"]
+].concat(Q.indexOf('tel')>-1?[["HOME","20:31",[["Messages",1],["Mail",2]],"","samedi 12 mars"]]:[]),
+o:[
+["Jouer simple","Un match propre, sans prise de risque",[2,1],12],
+["Chercher la différence","Tenter le geste qui fait lever le stade",[3,0,1],16,1],
+["Parler à Lacazette","Lui demander de te chercher dans l'axe",[1,2],"Lacazette +4"]
+],
+k:["Garder un œil sur Théo en tribune"],
+c:["!stats","!compo"]
+};
+if(Q.indexOf('but')>-1)D.but="Lacazette, de la tête";
+</script>
+<script src="w.js"></script>
+</body></html>
