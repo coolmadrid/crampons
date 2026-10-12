@@ -8,7 +8,7 @@ endM=MIN(MI)||90,items=[],cards=[];
 /* cartons et VAR sans minute : à la minute de l'événement de frise qui en parle, sinon après le dernier */
 cards.forEach(function(c){var tx=NZ(c.textContent).slice(0,30),hit=null;items.forEach(function(it){if(it.t=='ev'&&!hit&&NZ(it.x).indexOf(tx.slice(0,14))>-1)hit=it});items.push({m:hit?hit.m:(items.length?Math.max.apply(null,items.map(function(i){return i.m})):endM-1),el:c,t:'card',x:c.textContent.trim()})});
 /* blocs de fin : stats, domination, bulletin, ambiance finale, choix */
-var ENDS=[].slice.call(G.querySelectorAll('.stt,.mo,.bul,.q,.op,.se,.ck,textarea,input,.sb,.er,.cm,.totop,.rcp2,.lbt,.long,.pm,.tvstd')),
+var ENDS=[].slice.call(G.querySelectorAll('.stt,.mo,.bul,.q,.op,.se,.ck,textarea,input,.sb,.er,.cm,.totop,.rcp2,.lbt,.long,.pm,.tvstd')).filter(function(e){return !e.closest('.tf')}),
 startM=Math.max(0,Math.min.apply(null,items.map(function(i){return i.m}).concat([endM]))-1);
 var goalM=D.but?endM:null;
 /* score qui évolue : buts de la scène attribués à un camp, le reste déjà marqué au départ */
