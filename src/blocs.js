@@ -72,7 +72,7 @@ function tops(){top.innerHTML='<span class="mbi">✉️</span><b>Boîte de réce
 var fs=['Tous'];rows.forEach(function(r){if(fs.indexOf(r.f)<0)fs.push(r.f)});
 if(fs.length>2)fs.forEach(function(f){var c=H('button','mfc'+(f=='Tous'?' act':''),(f=='Tous'?'':'<i style="background:'+fcol(f)+'"></i>')+E(f));c.onclick=function(){cur=f;[].forEach.call(chips.children,function(e){e.classList.toggle('act',e==c)});draw()};chips.appendChild(c)});else chips.remove();
 function draw(){list.innerHTML='';rows.forEach(function(r){if(cur!='Tous'&&r.f!=cur)return;var i=r.i,x=r.x,pv=String(i[3]||'').replace(/==|\*\*/g,'').replace(/\s+/g,' ').slice(0,96);
-var row=H('button','mrw'+(r.u?' un':''),'<span class="mdot"></span><span class="mav" style="--fc:'+fcol(r.f)+'">'+mav(i[1],r.f)+'</span><span class="mtx"><span class="mh"><b>'+E(i[1])+'</b><time>'+E(i[4]||'')+'</time></span><span class="ms">'+(x.t?'<span class="mtg">'+E(x.t)+'</span>':'')+E(i[2]||'(sans objet)')+'</span><span class="mp">'+(x.a&&x.a.length?'📎 ':'')+E(pv)+'</span></span>');
+var row=H('button','mrw'+(r.u?' un':''),'<span class="mdot"></span><span class="mav" style="--fc:'+fcol(r.f)+'">'+mav(i[1],r.f)+'</span><span class="mtx"><span class="mh"><b>'+E(i[1])+'</b><time>'+E(i[4]||'')+'</time></span><span class="ms">'+(x.t?'<span class="mtag">'+E(x.t)+'</span>':'')+E(i[2]||'(sans objet)')+'</span><span class="mp">'+(x.a&&x.a.length?'📎 ':'')+E(pv)+'</span></span>');
 row.onclick=function(){openM(r,1)};list.appendChild(row)})}
 function openM(r,usr){if(r.u){r.u=0;unread--;tops()}var i=r.i,x=r.x;list.hidden=1;chips.hidden=1;rd.hidden=0;rd.innerHTML='';
 var bk=H('button','mbk','‹ Boîte de réception');bk.onclick=function(){rd.hidden=1;list.hidden=0;chips.hidden=0;draw()};rd.appendChild(bk);

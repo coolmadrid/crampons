@@ -91,7 +91,7 @@
 #g .mrw.un .mh time{color:#0A84FF;font-weight:600}
 #g .ms{font-size:13.5px;color:#1c2b40;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #g .mp{font-size:12.5px;color:#7a8799;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.35}
-#g .mtg{font-size:9.5px;font-weight:800;letter-spacing:.08em;color:#fff;background:#E24B4A;border-radius:4px;padding:1px 5px;margin-right:6px;vertical-align:1px}
+#g .mtag{font-size:9.5px;font-weight:800;letter-spacing:.08em;color:#fff;background:#E24B4A;border-radius:4px;padding:1px 5px;margin-right:6px;vertical-align:1px}
 #g .mbr{background:#fff;padding:4px 16px 16px;animation:mro .28s ease both}
 @keyframes mro{from{opacity:0;transform:translateX(18px)}}
 #g .mbk{margin:6px 0 4px -6px;padding:4px 6px;background:none;border:0;color:#0A84FF;font-size:14px}
