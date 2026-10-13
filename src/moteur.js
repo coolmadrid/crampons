@@ -150,7 +150,8 @@ if(SC){var gk='crg:'+SC[1]+'|'+SC[4],cur=+SC[2]+ +SC[3],pg=sg(gk);ss(gk,cur);if(
 function note(){var t=N0;if(t==null)return null;OPI.forEach(function(a){for(var k in a.S)[a.S[k].r,a.S[k].r2].forEach(function(r){if(r&&r.f!=null)t+=r.f})});return Math.max(3,Math.min(10,t))}
 function hdr(){var n=note();HN.innerHTML=(DS?'Destin '+DS+(n!=null?' · ':''):'')+(n!=null?'Note '+F1(N0)+(n!=N0?' → '+F1(n):''):'')}
 var PH=null,crd=function(x){return /carton rouge|rouge direct|deuxi[èe]me jaune|second jaune/i.test(x)?'<i class="card rd"></i>':/carton jaune|averti/i.test(x)?'<i class="card yl"></i>':''};
-function renderBlocks(LST,T){LST.forEach(function(i){if(!(Array.isArray(i)&&i[0]=='S'))PH2=null;if(!(Array.isArray(i)&&i[0]=='@'))IB=null;
+function renderBlocks(LST,T){LST.forEach(function(i){var n0=T.children.length;rb1(i,T);for(var j=n0;j<T.children.length;j++)if(T.children[j].dataset&&!T.children[j].dataset.k)T.children[j].dataset.k=Array.isArray(i)?String(i[0]):'p'})}
+function rb1(i,T){if(!(Array.isArray(i)&&i[0]=='S'))PH2=null;if(!(Array.isArray(i)&&i[0]=='@'))IB=null;
 if(typeof i=='string'){if(/^\s*\*{3}\s*$/.test(i))return T.appendChild(H('div','sep','<span>✦</span>'));return T.appendChild(H('p','nr',crd(i)+E(i)))}var k=i[0];if(BK[k]){var rr=BK[k](i);if(rr)T.appendChild(rr);return}
 if(k=='+'){var dn=/[−-]\s*\d/.test(i[1])&&!/\+\s*\d/.test(i[1]);T.appendChild(H('div','nt '+(dn?'dn':'up'),'<i>'+(dn?'▼':'▲')+'</i>'+E(i[1].replace(/^\[|\]$/g,''))))}
 else if(k=='#'){var md=i[1]||'',ty=/^@|tiktok|instagram|twitter|\bx\b|reddit|threads|youtube|snap/i.test(md)?'so':/10 ?sport|mercato|closer|voici|public|gala|tablo|buzz|\bsun\b|bild|people/i.test(md)?'tab':'';
@@ -164,7 +165,7 @@ else if(k=='S'){if(!PH){PH=H('div','ph','<div class="phh">Messages</div>');T.app
 else if(k=='~')T.appendChild(H('div','th','<span>💭</span>'+E(i[1])));
 else if(k=='O')T.appendChild(H('div','pol','<div class="pv">'+E(i[2]||'📸')+'</div><div class="plc">'+E(i[1])+'</div>'));
 else if(k=='L')T.appendChild(H('div','kd tlm','<b>'+E(i[1])+'</b>'+i[2].map(function(t){var mm=/(\d+)(?:\s*\+\s*(\d+))?/.exec(String(t[0]||''));return '<div class="ev" data-m="'+(mm?+mm[1]+(mm[2]?+mm[2]:0):'')+'"><span class="evm">'+E(t[0])+'</span><span class="evi">'+E(t[1]||'•')+'</span><span>'+E(t[2]||'')+'</span></div>'}).join('')));
-else T.appendChild(bub(k,i[1]))})}
+else T.appendChild(bub(k,i[1]))}
 renderBlocks(D.s||[],G);
 FIN.forEach(function(f){f()});if(D.s2&&D.s2.length){var LW=H('div','long'),LB=H('button','lbt','📖 Lire la scène complète');LB.onclick=function(){LB.remove();var n0=FIN.length;renderBlocks(D.s2,LW);FIN.slice(n0).forEach(function(f){f()});LW.classList.add('shown');[].forEach.call(LW.querySelectorAll('.amb,.mog,.xi,.fd,.tbd,.cj,.hlo,.tvcrowd,.ambq,.inf,.sbo,.lt'),VIS)};G.appendChild(LB);G.appendChild(LW)}var DC=G.querySelector('.nr');if(DC&&String(DC.textContent).length>140)DC.classList.add('dc');
 var WXE=WX?H('div','meteo '+WX):null;if(WXE)G.appendChild(WXE);
