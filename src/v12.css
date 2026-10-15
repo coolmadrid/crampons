@@ -89,6 +89,7 @@
 #g .albh{padding:10px 14px 4px;color:#8E8E93;font-size:12.5px}
 #g.lvon>:is(.stt,.mo,.bul,.q,.op,.se,.ck,textarea,input,.sb,.er,.cm,.totop,.rcp2,.lbt,.long,.pm,.tvstd){display:none!important}
 
-/* v8.7 : sur téléphone, le portable garde une taille fixe et on fait défiler son écran au doigt (les longs fils restent lisibles) */
-@media (max-width:600px),(pointer:coarse){#g .tel{height:600px!important;min-height:0}#g .tsc{position:absolute!important;left:12px;right:12px;top:12px;bottom:12px;overflow-x:hidden!important;overflow-y:auto!important;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;touch-action:pan-y;scrollbar-width:thin}#g .tvw{min-height:100%}#g .tth{min-height:0}}
+/* v8.7 : sur téléphone, le portable garde une taille fixe ; son écran défile au doigt (géré en JS, l'appli bloque le défilement natif) et avec les boutons ▲ ▼ */
+@media (max-width:600px),(pointer:coarse){#g .tel{height:600px!important;min-height:0!important}#g .tsc{position:absolute!important;left:12px!important;right:12px!important;top:12px!important;bottom:12px!important;overflow-x:hidden!important;overflow-y:auto!important;-webkit-overflow-scrolling:touch;overscroll-behavior:contain!important;touch-action:none}#g .tvw{min-height:100%!important}#g .tth{min-height:0!important}}
+#g .tud{position:absolute;right:-6px;z-index:60;width:34px;height:34px;border-radius:50%;border:1px solid #3a3a40;background:rgba(20,20,24,.85);color:#fff;font-size:15px;display:grid;place-items:center;padding:0;cursor:pointer}#g .tud.u{top:120px}#g .tud.d{bottom:120px}
 #g .rca{flex-wrap:wrap}#g .rcc{border:1px solid var(--bd);color:var(--t2)}
