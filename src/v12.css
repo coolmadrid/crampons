@@ -89,6 +89,6 @@
 #g .albh{padding:10px 14px 4px;color:#8E8E93;font-size:12.5px}
 #g.lvon>:is(.stt,.mo,.bul,.q,.op,.se,.ck,textarea,input,.sb,.er,.cm,.totop,.rcp2,.lbt,.long,.pm,.tvstd){display:none!important}
 
-/* v8.3 : sur téléphone, le portable prend la hauteur de son contenu, plus de défilement dans le défilement */
-@media (max-width:600px),(pointer:coarse){#g .tel{height:auto!important;min-height:620px}#g .tsc{position:relative!important;left:auto;right:auto;top:auto;bottom:auto;overflow:visible!important;min-height:596px;overscroll-behavior:auto}#g .tvw{min-height:596px}#g .tth{min-height:0}}
+/* v8.7 : sur téléphone, le portable garde une taille fixe et on fait défiler son écran au doigt (les longs fils restent lisibles) */
+@media (max-width:600px),(pointer:coarse){#g .tel{height:600px!important;min-height:0}#g .tsc{position:absolute!important;left:12px;right:12px;top:12px;bottom:12px;overflow-x:hidden!important;overflow-y:auto!important;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;touch-action:pan-y;scrollbar-width:thin}#g .tvw{min-height:100%}#g .tth{min-height:0}}
 #g .rca{flex-wrap:wrap}#g .rcc{border:1px solid var(--bd);color:var(--t2)}
